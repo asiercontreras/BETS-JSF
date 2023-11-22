@@ -2,17 +2,40 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-<!--  <meta charset="ISO-8859-1">-->
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<f:view>
+		<h:head>
+			<!--  <meta charset="ISO-8859-1">-->
 
-<title>CREATE QUESTIONS</title>
-<h:outputStylesheet library="css" name="style.css" />
+			<title>CREATE QUESTIONS</title>
+			<h:outputStylesheet library="css" name="style.css" />
 
-</h:head>
-<h:body>
-<h1>CREATE QUESTIONS</h1>
-</h:body>
+		</h:head>
+		<h:body>
+			<h1>CREATE QUESTIONS</h1>
+			<h:form id="miForm">
+
+				<tr>
+					<td>Fecha:</td>
+					<td><p:calendar id="fecha" value="#{createQuestion.fecha}"
+							navigator="false" mode="inline">
+							<p:ajax event="dateSelect"
+								listener="#{createQuestion.onDateSelect}" update="mensajes"></p:ajax>
+						</p:calendar></td>
+				</tr>
+				<tr>
+					<td><h:messages id="mensajes" style="color:blue" /></td>
+				</tr>
+
+				
+
+			</h:form>
+		</h:body>
+	</f:view>
+</ui:composition>
+
 </html>

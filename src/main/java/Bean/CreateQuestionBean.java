@@ -2,6 +2,11 @@ package Bean;
 
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.SelectEvent;
+
 import domain.Event;
 import domain.Question;
 import businessLogic.BLFacade;
@@ -41,5 +46,9 @@ public class CreateQuestionBean {
 
 	public void setMinBet(int minBet) {
 		this.minBet = minBet;
+	}
+	
+	public void onDateSelect(SelectEvent e) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + e.getObject()));
 	}
 }
