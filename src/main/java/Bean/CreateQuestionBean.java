@@ -4,7 +4,7 @@ import java.util.Date;
 
 import domain.Event;
 import domain.Question;
-
+import businessLogic.BLFacade;
 public class CreateQuestionBean {
 	private Date fecha;
 	private Event partido;
@@ -42,5 +42,4 @@ public class CreateQuestionBean {
 	public void setMinBet(int minBet) {
 		this.minBet = minBet;
 	}
-
 }

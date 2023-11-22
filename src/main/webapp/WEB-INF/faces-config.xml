@@ -22,7 +22,7 @@
 		<display-name>Main.xhtml</display-name>
 		<from-view-id>/Main.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>createQuestion</from-outcome>
+			<from-outcome>queryQuestion</from-outcome>
 			<to-view-id>/QueryQuestion.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
