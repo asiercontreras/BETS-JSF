@@ -26,5 +26,21 @@
 			<to-view-id>/QueryQuestion.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>Main.xhtml</display-name>
+		<from-view-id>/Main.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/Login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Main.xhtml</display-name>
+		<from-view-id>/Main.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>register</from-outcome>
+			<to-view-id>/Register.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>
