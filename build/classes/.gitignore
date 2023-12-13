@@ -1,2 +1,6 @@
-/resources/
 /Bean/
+/dominio/
+/resources/
+/hibernate.cfg.xml
+/modelo/
+/principal/
