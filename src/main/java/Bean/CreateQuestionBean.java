@@ -7,14 +7,17 @@ import java.util.Vector;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
 
+import Bean.*;
 import domain.Event;
 import domain.Question;
+import exceptions.EventFinished;
+import exceptions.QuestionAlreadyExist;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
-import Bean.*;
 import resources.*;
 import configuration.*;
 
@@ -22,19 +25,19 @@ public class CreateQuestionBean {
 	private Date fecha;
 	private Event partido;
 	private Question pregunta;
-	private int minBet;
+	private int minBet; 
 	private Vector<Event> eventos;
 	private BeanDataAccess bda;
 	private BLFacade bf;
-	private int claveEvento;
-	
+	private String escribirPregunta;
+
 	public CreateQuestionBean() {
-		//configxml = ConfigXML.getInstance();
+		// configxml = ConfigXML.getInstance();
 		eventos = new Vector<Event>();
-		//bda = new BeanDataAccess();
+		// bda = new BeanDataAccess();
 		bda = BeanDataAccess.getInstance();
-		//eventos.add(new Event("Evento 1", new Date(2021, 12, 31)));
-		//eventos.add(new Event("Evento 2", new Date(2020, 12, 31)));
+		// eventos.add(new Event("Evento 1", new Date(2021, 12, 31)));
+		// eventos.add(new Event("Evento 2", new Date(2020, 12, 31)));
 		bf = bda.getBLFAcade();
 	}
 
@@ -70,27 +73,49 @@ public class CreateQuestionBean {
 		this.minBet = minBet;
 	}
 	
+	public String getEscribirPregunta() {
+		return this.escribirPregunta;
+	}
+	
+	public void setEscribirPregunta(String escribirPregunta) {
+		this.escribirPregunta = escribirPregunta;
+	}
+
 	public void onDateSelect(SelectEvent e) {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + e.getObject()));
-		System.out.println(bf.getEvents((Date)e.getObject()));
-		setEventos(bf.getEvents((Date)e.getObject()));
+		System.out.println(bf.getEvents((Date) e.getObject()));
+		setEventos(bf.getEvents((Date) e.getObject()));
 	}
-	
-	public Vector<Event> getEventos(){
+
+	public Vector<Event> getEventos() {
 		return this.eventos;
 	}
-	
+
 	public void setEventos(Vector<Event> eventos) {
-		this.eventos=eventos;
-		//System.out.println(eventos.toString());
+		this.eventos = eventos;
+		// System.out.println(eventos.toString());
+	}
+
+	public void listener(AjaxBehaviorEvent event) {
+		System.out.println("Evento:" + partido.getDescription() + " -> "
+				+ partido.getEventDate() + " -> " + partido.getEventDate());
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage("Evento:" + partido.getDescription() + " -> "
+		+ partido.getEventDate() + " -> " + partido.getEventDate()));
 	}
 	
-	/*public void onAsignarClave(SelectEvent e) {
-		eventos = bf.getEvents((Date)e.getObject());
-	}*/
-	
-	/*public Vector<Event> getEventsBD(Date date){
-		eventos = bf.getEvents(fecha);
-		return eventos;
-	}*/
+	public void crearPregunta() throws EventFinished, QuestionAlreadyExist {
+		pregunta = bf.createQuestion(partido, escribirPregunta, minBet);
+		System.out.println(pregunta.toString());
+	}
+
+	/*
+	 * public void onAsignarClave(SelectEvent e) { eventos =
+	 * bf.getEvents((Date)e.getObject()); }
+	 */
+
+	/*
+	 * public Vector<Event> getEventsBD(Date date){ eventos = bf.getEvents(fecha);
+	 * return eventos; }
+	 */
 }

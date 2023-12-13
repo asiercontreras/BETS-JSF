@@ -24,7 +24,8 @@
 					<td><p:calendar id="fecha" value="#{createQuestion.fecha}"
 							navigator="false" mode="inline">
 							<p:ajax event="dateSelect"
-								listener="#{createQuestion.onDateSelect}" update="mensajes :miForm:lista"></p:ajax>
+								listener="#{createQuestion.onDateSelect}"
+								update="mensajes :miForm:comboboxEventos"></p:ajax>
 						</p:calendar></td>
 				</tr>
 				<tr>
@@ -32,18 +33,32 @@
 				</tr>
 
 				<tr>
-					<td><h3>Tipo de usuario:</h3></td>
-					<td><h:selectOneMenu id="lista" value="#{createQuestion.partido}"
-									converter="omnifaces.SelectItemsConverter">
+					<td><h3>Eventos:</h3></td>
+					<td><h:selectOneMenu id="comboboxEventos"
+							value="#{createQuestion.partido}"
+							converter="omnifaces.SelectItemsConverter">
 							<f:selectItems value="#{createQuestion.eventos}" />
-							<p:ajax event="change"
-								listener="#{createQuestion.Listener}" render="mensajes2"></p:ajax>
+							<p:ajax event="change" listener="#{createQuestion.listener}"
+								render="mensajes2"></p:ajax>
 						</h:selectOneMenu></td>
 				</tr>
-
 				<tr>
 					<td><h:messages id="mensajes2" style="color:green" /></td>
 				</tr>
+
+				<table>
+					<tr>
+						<td>Question:</td>
+						<td><h:inputText id="pregunta" value="#{createQuestion.escribirPregunta}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td>Min Bet:</td>
+						<td><h:inputText id="minBet" value="#{createQuestion.minBet}"></h:inputText></td>
+					</tr>
+				</table>
+				<p>
+					<h:commandButton value="Crear pregunta" action="#{createQuestion.crearPregunta}" />
+				</p>
 
 			</h:form>
 		</h:body>
