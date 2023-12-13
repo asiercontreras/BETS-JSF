@@ -13,6 +13,14 @@ xmlns:f="http://java.sun.com/jsf/core">
 
 </h:head>
 <h:body>
-<h1>QUERY QUESTIONS</h1>
+<h1>REGISTER</h1>
+<h:form>
+	<h:outputLabel for="username" value="Username:" />
+    <h:inputText id="username" value="#{RegisterBean.username}" />
+    <h:commandButton value="Submit" action="#{RegisterBean.submit}" />
+    
+</h:form>
+
+
 </h:body>
 </html>
