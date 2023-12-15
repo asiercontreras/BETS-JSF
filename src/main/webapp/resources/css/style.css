@@ -1,7 +1,19 @@
 #maindiv {
     text-align: center; 
+    padding: 40px;
+    border-radius: 5px;
+    background-color: #dbdbdb;
+    display: inline-block;
+  
+	
+	
 }
 
+body{
+	background-color: #cdd4cf;
+	text-align: center;
+	 font-family: 'Arial', sans-serif; 
+}
 #maindiv a {
     display: block; 
     margin-bottom: 10px;
@@ -10,8 +22,8 @@
 #maindiv button {
    
     padding: 8px 16px;
-    width: 240px;
-    height: 40px;
+    width: 300px;
+    height: 60px;
     
     background-color: #007bff;
     color: #fff;
