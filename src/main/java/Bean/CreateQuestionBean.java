@@ -20,6 +20,7 @@ import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 import resources.*;
 import configuration.*;
+import dataAccess.DataAccessHibernate;
 
 public class CreateQuestionBean {
 	private Date fecha;
@@ -27,7 +28,7 @@ public class CreateQuestionBean {
 	private Question pregunta;
 	private int minBet; 
 	private Vector<Event> eventos;
-	private BeanDataAccess bda;
+	private DataAccessHibernate bda;
 	private BLFacade bf;
 	private String escribirPregunta;
 
@@ -35,7 +36,7 @@ public class CreateQuestionBean {
 		// configxml = ConfigXML.getInstance();
 		eventos = new Vector<Event>();
 		// bda = new BeanDataAccess();
-		bda = BeanDataAccess.getInstance();
+		bda = DataAccessHibernate.getInstance();
 		// eventos.add(new Event("Evento 1", new Date(2021, 12, 31)));
 		// eventos.add(new Event("Evento 2", new Date(2020, 12, 31)));
 		bf = bda.getBLFAcade();

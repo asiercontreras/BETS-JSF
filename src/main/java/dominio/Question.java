@@ -3,6 +3,8 @@ package dominio;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import domain.Event;
+
 @Entity
 public class Question {
 	@Id
@@ -10,6 +12,8 @@ public class Question {
 	private Event evento;
 	private String question;
 	private float betMinimum;
+	private Event event;
+
 	
 	public Question() {}
 	public Integer getQuestionNumber() {
@@ -35,6 +39,12 @@ public class Question {
 	}
 	public void setBetMinimum(float betMinimum) {
 		this.betMinimum = betMinimum;
+	}
+	public Event getEvent() {
+		return event;
+	}
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
 }

@@ -1,51 +1,48 @@
-package Bean;
+package dataAccess;
 
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 import dataAccess.DataAccess;
 
-public class BeanDataAccess {
-	//private BLFacadeImplementation blfacadeImp;
+public class DataAccessHibernate {
+	// private BLFacadeImplementation blfacadeImp;
 	private BLFacade blfacade;
-	
-	private static BeanDataAccess bdaInstance;
-	
-	public BeanDataAccess() {
+
+	private static DataAccessHibernate bdaInstance;
+
+	public DataAccessHibernate() {
 		try {
 			DataAccess da = new DataAccess();
 			blfacade = new BLFacadeImplementation(da);
-			//blfacade.initializeBD();
-		}
-		catch (Exception e) {
+			// blfacade.initializeBD();
+		} catch (Exception e) {
 			System.out.println("ERROR: No se ha podido crear la Base de Datos.");
 		}
-		//blfacadeImp = new BLFacadeImplementation();
+		// blfacadeImp = new BLFacadeImplementation();
 	}
-	
-	public static BeanDataAccess getInstance() {
-		if(bdaInstance == null) {
-			bdaInstance = new BeanDataAccess();
+
+	public static DataAccessHibernate getInstance() {
+		if (bdaInstance == null) {
+			bdaInstance = new DataAccessHibernate();
 		}
 		return bdaInstance;
 	}
-	
+
 	public BLFacade getBLFAcade() {
 		try {
 			return this.blfacade;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("ERROR: No se ha podido crear la Base de Datos.");
 			return null;
 		}
 	}
-	
+
 	public void setBLFAcade(BLFacade blf) {
 		try {
 			this.blfacade = blf;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("ERROR: No se ha podido crear la Base de Datos.");
 		}
 	}
-	
+
 }

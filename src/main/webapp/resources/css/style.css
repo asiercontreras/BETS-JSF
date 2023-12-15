@@ -1,5 +1,28 @@
-button{
-	padding: 40px;
-	background-color: blue;
-	border: 2px black;
+#maindiv {
+    text-align: center; 
+}
+
+#maindiv a {
+    display: block; 
+    margin-bottom: 10px;
+}
+
+#maindiv button {
+   
+    padding: 8px 16px;
+    width: 240px;
+    height: 40px;
+    
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#maindiv button:hover {
+    background-color: #0056b3; 
+}
+#mainh1{
+	    text-align: center; 
+	
 }

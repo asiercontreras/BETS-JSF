@@ -34,8 +34,16 @@ public class CreateEvents {
 	}
 
 	public static void main(String[] args) {
+	Question q1 = new Question();
+	Question q2 = new Question();
+	Question q3 = new Question();
+
 
 		Vector<Question> q = new Vector<Question>();
+		q.add(q1);
+		q.add(q2);
+		q.add(q3);
+
 		CreateEvents e = new CreateEvents();
 		System.out.println("Creación de eventos:");
 		e.createAndStoreEvent(1, "Atleti-Real", new Date(), q);
