@@ -90,18 +90,6 @@ public final class BLFacadeHibernate  implements BLFacadeHibernateInterface {
 		//dbManager.close();
 		return dates;
 	}
-	
-
-	/**
-	 * This method invokes the data access to initialize the database with some events and questions.
-	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
-	 */	
-    //@WebMethod	
-	 public void initializeBD(){
-    	//dbManager.open();
-		dbManager.initializeDB();
-		//dbManager.close();
-	}
 
 	
 

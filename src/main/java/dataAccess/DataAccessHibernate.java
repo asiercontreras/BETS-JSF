@@ -80,30 +80,13 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 			Question q5;
 			Question q6;
 					
-			
 				q1=ev1.addQuestion("¿Quién ganará el partido?",1);
 				q2=ev1.addQuestion("¿Quién meterá el primer gol?",2);
 				q3=ev11.addQuestion("¿Quién ganará el partido?",1);
 				q4=ev11.addQuestion("¿Cuántos goles se marcarán?",2);
 				q5=ev17.addQuestion("¿Quién ganará el partido?",1);
 				q6=ev17.addQuestion("¿Habrá goles en la primera parte?",2);
-			
-			
-			session.save(q1);
-			session.save(q2);
-			session.save(q3);
-			session.save(q4);
-			session.save(q5);
-			session.save(q6);
-			
-//			db.persist(q1);
-//			db.persist(q2);
-//			db.persist(q3);
-//			db.persist(q4);
-//			db.persist(q5);
-//			db.persist(q6);
-	
-	        
+
 			session.save(ev1);
 			session.save(ev2);
 			session.save(ev3);
@@ -125,26 +108,13 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 			session.save(ev19);
 			session.save(ev20);
 			
-//			db.persist(ev1);
-//			db.persist(ev2);
-//			db.persist(ev3);
-//			db.persist(ev4);
-//			db.persist(ev5);
-//			db.persist(ev6);
-//			db.persist(ev7);
-//			db.persist(ev8);
-//			db.persist(ev9);
-//			db.persist(ev10);
-//			db.persist(ev11);
-//			db.persist(ev12);
-//			db.persist(ev13);
-//			db.persist(ev14);
-//			db.persist(ev15);
-//			db.persist(ev16);
-//			db.persist(ev17);
-//			db.persist(ev18);
-//			db.persist(ev19);
-//			db.persist(ev20);			
+			session.save(q1);
+			session.save(q2);
+			session.save(q3);
+			session.save(q4);
+			session.save(q5);
+			session.save(q6);
+			
 			
 			session.getTransaction().commit();
 			System.out.println("Db initialized");

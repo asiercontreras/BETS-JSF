@@ -7,7 +7,7 @@ public class Question {
 	private Integer questionNumber;
 	private String question;
 	private float betMinimum;
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private Event event;
 
 	
