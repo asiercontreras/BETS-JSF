@@ -1,15 +1,13 @@
 package dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
+import javax.persistence.*;
 @Entity
 public class Question {
-	@Id
+	@Id	@GeneratedValue
 	private Integer questionNumber;
-	private Event evento;
 	private String question;
 	private float betMinimum;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private Event event;
 
 	
@@ -24,12 +22,7 @@ public class Question {
 	public void setQuestionNumber(Integer questionNumber) {
 		this.questionNumber = questionNumber;
 	}
-	public Event getEvento() {
-		return evento;
-	}
-	public void setEvento(Event evento) {
-		this.evento = evento;
-	}
+
 	public String getQuestion() {
 		return question;
 	}

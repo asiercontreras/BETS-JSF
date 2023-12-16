@@ -1,18 +1,25 @@
 package dominio;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Event {
-	@Id
+	@Id@GeneratedValue
 	private Integer eventNumber;
 	private String description;
 	private Date eventDate;
-	private Vector<Question> questions = new Vector<Question>();
+	
+//Se ha tenido que cambiar el vector a set porque hibernate no puede mappear vectores si no set.
+//Problema encontrado para comentar en el documento, creo que sera im
+	@OneToMany(mappedBy="event", fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	//private Vector<Question> questions = new Vector<Question>();
+	private Set<Question> questions=new HashSet<Question>();
+
 
 	public Event(int num, String nombre, Date fecha) {
 		this.eventNumber = num;
@@ -57,11 +64,11 @@ public class Event {
 		this.eventDate = eventDate;
 	}
 
-	public Vector<Question> getQuestions() {
+	public Set<Question> getQuestions() {
 		return questions;
 	}
 
-	public void setQuestions(Vector<Question> questions) {
+	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
 
