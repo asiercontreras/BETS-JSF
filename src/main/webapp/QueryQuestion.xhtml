@@ -4,7 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core">
+xmlns:f="http://java.sun.com/jsf/core"	
+xmlns:p="http://primefaces.org/ui">
+
+
 <h:head>
 <!--  <meta charset="ISO-8859-1">-->
 
@@ -17,48 +20,37 @@ xmlns:f="http://java.sun.com/jsf/core">
 
 <h:form id="miForm">
 
-				<tr>
+	<tr>
 					<td>Fecha:</td>
-					<td><p:calendar id="fecha" value="#{queryQuestion.fecha}"
-							navigator="false" mode="inline">
-							<p:ajax event="dateSelect"
-								listener="#{query.onDateSelect}"
-								update="mensajes :miForm:comboboxEventos"></p:ajax>
+					<td><p:calendar id="fecha" value="#{queryQuestion.date}" navigator="false" mode="inline">
+							<p:ajax event="dateSelect"	listener="#{queryQuestion.onDateSelect}" update="tablaEventos"></p:ajax>
 						</p:calendar></td>
 				</tr>
+		
 				<tr>
 					<td><h:messages id="mensajes" style="color:blue" /></td>
 				</tr>
-
 				<tr>
-					<td><h3>Eventos:</h3></td>
-					<td><h:selectOneMenu id="comboboxEventos"
-							value="#{createQuestion.partido}"
-							converter="omnifaces.SelectItemsConverter">
-							<f:selectItems value="#{createQuestion.eventos}" />
-							<p:ajax event="change" listener="#{createQuestion.listener}"
-								render="mensajes2"></p:ajax>
-						</h:selectOneMenu></td>
-				</tr>
+				<td><p:dataTable id="tablaEventos" value="#{queryQuestion.events}" var="event" 	selectionMode="single"	selection="#{queryQuestion.event}" border="1" rowKey="#{event.eventNumber}">
+					<p:ajax event="rowSelect" listener="#{queryQuestion.showQuestions}" update=":miForm:tablaPreguntas"></p:ajax>
+					<f:facet name="header">Eventos:</f:facet>
+					<p:column headerText="NumEvento">#{event.eventNumber}</p:column>
+					<p:column headerText="Evento">#{event.description}</p:column>
+					</p:dataTable></td>				
+				</tr> 
+				
+				
 				<tr>
-					<td><h:messages id="mensajes2" style="color:green" /></td>
-				</tr>
-
-				<table>
-					<tr>
-						<td>Question:</td>
-						<td><h:inputText id="pregunta" value="#{createQuestion.escribirPregunta}"></h:inputText></td>
-					</tr>
-					<tr>
-						<td>Min Bet:</td>
-						<td><h:inputText id="minBet" value="#{createQuestion.minBet}"></h:inputText></td>
-					</tr>
-				</table>
-				<p>
-					<h:commandButton value="Crear pregunta" action="#{createQuestion.crearPregunta}" />
-				</p>
-
-			</h:form>
+				<td>
+				<p:dataTable id="tablaPreguntas" value="#{queryQuestion.questions}" var="q" selection="#{queryQuestion.question}" border="1"  disabledSelection="TRUE">
+					<f:facet name="header">Preguntas:</f:facet>
+					<p:column headerText="NumPregunta">#{q.questionNumber}</p:column>
+					<p:column headerText="Pregunta">#{q.question}</p:column>
+					</p:dataTable>
+				</td>				
+				</tr> 
+				
+</h:form>
 
 
 </h:body>

@@ -23,16 +23,15 @@ import resources.*;
 import configuration.*;
 import dataAccess.DataAccessHibernate;
 
-
-@ManagedBean (name = "createQuestion")
+@ManagedBean(name = "createQuestion")
 @RequestScoped
 public class CreateQuestionBean {
-	
-	//private Event evento;
+
+	// private Event evento;
 	private Date fecha;
 	private Event event;
 	private Question question;
-	private int minBet; 
+	private int minBet;
 	private Vector<Event> events;
 	private BLFacadeHibernateInterface bl;
 	private String stringQuestion;
@@ -40,19 +39,18 @@ public class CreateQuestionBean {
 	public CreateQuestionBean() {
 		bl = BLFacadeHibernate.getInstance();
 	}
-	
+
 	public void createQuestion() throws EventFinished, QuestionAlreadyExist {
 		question = bl.createQuestion(event, stringQuestion, minBet);
 		System.out.println(question.toString());
 	}
-	
+
 	public void listener(AjaxBehaviorEvent evento) {
-		System.out.println("Evento:" + event.getDescription() + " -> "
-				+ event.getEventDate() + " -> " + event.getEventDate());
-		
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Evento:" + event.getDescription() + " -> "
-		+ event.getEventDate() + " -> " + event.getEventDate()));
+		System.out.println(
+				"Evento:" + event.getDescription() + " -> " + event.getEventDate() + " -> " + event.getEventDate());
+
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+				"Evento:" + event.getDescription() + " -> " + event.getEventDate() + " -> " + event.getEventDate()));
 	}
 
 	public void getEvent(Date fecha) {
@@ -62,7 +60,7 @@ public class CreateQuestionBean {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -90,11 +88,11 @@ public class CreateQuestionBean {
 	public void setMinBet(int minBet) {
 		this.minBet = minBet;
 	}
-	
+
 	public String getstringQuestion() {
 		return this.stringQuestion;
 	}
-	
+
 	public void setstringQuestion(String stringQuestion) {
 		this.stringQuestion = stringQuestion;
 	}
@@ -102,16 +100,15 @@ public class CreateQuestionBean {
 	public void onDateSelect(SelectEvent e) {
 
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + e.getObject()));
-		//System.out.println(bl.getEvents((Date) e.getObject()));
+		// System.out.println(bl.getEvents((Date) e.getObject()));
 		System.out.println("-----------------------------------------------------");
-		System.out.println("Los Eventos ANTES:" +this.getEvents());
-		
-		setEvents(bl.getEvents((Date) e.getObject()));
-		
+		System.out.println("Los Eventos ANTES:" + this.getEvents());
+
+		this.events = bl.getEvents((Date) e.getObject());
+
 		System.out.println("-----------------------------------------------------");
-		System.out.println("Los Eventos DESPUES:" +this.getEvents());
-		
-		
+		System.out.println("Los Eventos DESPUES:" + this.getEvents());
+
 	}
 
 	public Vector<Event> getEvents() {
@@ -122,11 +119,6 @@ public class CreateQuestionBean {
 		this.events = eventos;
 		// System.out.println(eventos.toString());
 	}
-	
-	
-	
-	
-	
 
 	/*
 	 * public void onAsignarClave(SelectEvent e) { eventos =

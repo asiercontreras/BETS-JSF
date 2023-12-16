@@ -90,6 +90,13 @@ public final class BLFacadeHibernate  implements BLFacadeHibernateInterface {
 		//dbManager.close();
 		return dates;
 	}
+	
+	
+	
+	public Vector<Question> getQuestions(Event event){
+		
+		return dbManager.getQuestions(event);
+	}
 
 	
 

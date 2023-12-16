@@ -10,6 +10,11 @@
 		<managed-bean-class>Bean.CreateQuestionBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>queryQuestion</managed-bean-name>
+		<managed-bean-class>Bean.QueryQuestionBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>Main.xhtml</display-name>
 		<from-view-id>/Main.xhtml</from-view-id>

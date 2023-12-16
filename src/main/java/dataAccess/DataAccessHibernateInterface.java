@@ -50,6 +50,14 @@ public interface DataAccessHibernateInterface {
 	 * @return true if the event contains this the questions, false in other case
 	 */
 	boolean existQuestion(Event event, String question);
+	
+	
+	
+	
+	Vector<Question> getQuestions(Event e);
+	
+	
+	
 
 	
 

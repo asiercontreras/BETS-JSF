@@ -48,4 +48,11 @@ public interface BLFacadeHibernateInterface  {
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
 	
+	
+	public Vector<Question> getQuestions(Event event);
+	
+	/**
+	 * Returns the questions associated to an Event
+	 */	
+	
 }
