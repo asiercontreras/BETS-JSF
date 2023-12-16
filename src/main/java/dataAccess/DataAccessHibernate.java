@@ -141,7 +141,7 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 		System.out.println(">> DataAccess: createQuestion=> event= "+event+" question= "+question+" betMinimum="+betMinimum);
 	
 			//Event ev = dbMa.find(Event.class, event.getEventNumber());
-			Query query = session.createQuery("FROM EVENT WHERE eventNumber = :number");
+			Query query = session.createQuery("FROM Event WHERE eventNumber = :number");
 			query.setParameter("number", event.getEventNumber());
 			Event myEvent = (Event) query.uniqueResult();
 			
@@ -165,11 +165,19 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 	 * @return collection of events
 	 */
 	public Vector<Event> getEvents(Date date) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
 		System.out.println(">> DataAccess: getEvents");
-		Vector<Event> res = new Vector<Event>();	
-		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1",Event.class);   
-		query.setParameter(1, date);
-		List<Event> events = query.getResultList();
+		
+		Query query = session.createQuery("FROM Event WHERE eventDate = :date");
+		query.setParameter("date", date);
+		List<Event> events = query.list();
+		
+		session.getTransaction().commit();
+		
+		Vector<Event> res = new Vector<Event>();
+		
 	 	 for (Event ev:events){
 	 	   System.out.println(ev.toString());		 
 		   res.add(ev);
@@ -184,12 +192,14 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 	 * @return collection of dates
 	 */
 	public Vector<Date> getEventsMonth(Date date) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
 		System.out.println(">> DataAccess: getEventsMonth");
 		Vector<Date> res = new Vector<Date>();	
 		
 		Date firstDayMonthDate= UtilDate.firstDayMonth(date);
 		Date lastDayMonthDate= UtilDate.lastDayMonth(date);
-				
+		
 		
 		TypedQuery<Date> query = db.createQuery("SELECT DISTINCT ev.eventDate FROM Event ev WHERE ev.eventDate BETWEEN ?1 and ?2",Date.class);   
 		query.setParameter(1, firstDayMonthDate);
@@ -203,9 +213,16 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 	}
 
 public boolean existQuestion(Event event, String question) {
+	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+	session.beginTransaction();
+	
 	System.out.println(">> DataAccess: existQuestion=> event= "+event+" question= "+question);
-	Event ev = db.find(Event.class, event.getEventNumber());
-	return ev.DoesQuestionExists(question);
+	
+	Query query = session.createQuery("FROM Event WHERE eventNumber = :number");
+	query.setParameter("number", event.getEventNumber());
+	Event myEvent = (Event) query.uniqueResult();
+	
+	return myEvent.DoesQuestionExists(question);
 	
 }
 

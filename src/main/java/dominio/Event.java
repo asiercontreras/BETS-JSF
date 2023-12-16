@@ -20,7 +20,9 @@ public class Event {
 	//private Vector<Question> questions = new Vector<Question>();
 	private Set<Question> questions=new HashSet<Question>();
 
-
+	public Event() {
+	}
+	
 	public Event(int num, String nombre, Date fecha) {
 		this.eventNumber = num;
 		this.description = nombre;

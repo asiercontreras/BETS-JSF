@@ -10,6 +10,8 @@ public class Question {
 	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private Event event;
 
+	public Question() {
+	}
 	
 	public Question(String question,float betMinimum, Event event) {
 		this.question = question;

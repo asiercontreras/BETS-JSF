@@ -24,7 +24,7 @@ import configuration.*;
 import dataAccess.DataAccessHibernate;
 
 
-@ManagedBean
+@ManagedBean (name = "createQuestion")
 @RequestScoped
 public class CreateQuestionBean {
 	
@@ -61,6 +61,10 @@ public class CreateQuestionBean {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+	
+	public Date getFecha() {
+		return fecha;
 	}
 
 	public Event getEvent() {
