@@ -25,7 +25,7 @@
 							navigator="false" mode="inline">
 							<p:ajax event="dateSelect"
 								listener="#{createQuestion.onDateSelect}"
-								update="mensajes"></p:ajax>
+								update="mensajes :miForm:comboboxEventos"></p:ajax>
 						</p:calendar></td>
 				</tr>
 				<tr>
@@ -37,8 +37,8 @@
 					<td><h:selectOneMenu id="comboboxEventos"
 							value="#{createQuestion.event}"
 							converter="omnifaces.SelectItemsConverter">
-							<f:selectItems value="#{createQuestion.event}" />
-							<p:ajax event="change" listener="#{createQuestion.listener}"
+							<f:selectItems value="#{createQuestion.events}" />
+							<p:ajax event="change" listener="#{createQuestion.setEventos}"
 								render="mensajes2"></p:ajax>
 						</h:selectOneMenu></td>
 				</tr>

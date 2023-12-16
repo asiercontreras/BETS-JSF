@@ -100,19 +100,33 @@ public class CreateQuestionBean {
 	}
 
 	public void onDateSelect(SelectEvent e) {
+
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + e.getObject()));
-		System.out.println(bl.getEvents((Date) e.getObject()));
-		setEventos(bl.getEvents((Date) e.getObject()));
+		//System.out.println(bl.getEvents((Date) e.getObject()));
+		System.out.println("-----------------------------------------------------");
+		System.out.println("Los Eventos ANTES:" +this.getEvents());
+		
+		setEvents(bl.getEvents((Date) e.getObject()));
+		
+		System.out.println("-----------------------------------------------------");
+		System.out.println("Los Eventos DESPUES:" +this.getEvents());
+		
+		
 	}
 
-	public Vector<Event> getEventos() {
+	public Vector<Event> getEvents() {
 		return this.events;
 	}
 
-	public void setEventos(Vector<Event> eventos) {
+	public void setEvents(Vector<Event> eventos) {
 		this.events = eventos;
 		// System.out.println(eventos.toString());
 	}
+	
+	
+	
+	
+	
 
 	/*
 	 * public void onAsignarClave(SelectEvent e) { eventos =
