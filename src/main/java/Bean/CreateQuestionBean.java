@@ -6,64 +6,77 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
 
 import Bean.*;
-import domain.Event;
-import domain.Question;
+import dominio.*;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
-import businessLogic.BLFacade;
-import businessLogic.BLFacadeImplementation;
+import businessLogic.BLFacadeHibernateInterface;
+import businessLogic.BLFacadeHibernate;
 import resources.*;
 import configuration.*;
 import dataAccess.DataAccessHibernate;
 
+
+@ManagedBean
+@RequestScoped
 public class CreateQuestionBean {
+	
+	//private Event evento;
 	private Date fecha;
-	private Event partido;
-	private Question pregunta;
+	private Event event;
+	private Question question;
 	private int minBet; 
-	private Vector<Event> eventos;
-	private DataAccessHibernate bda;
-	private BLFacade bf;
-	private String escribirPregunta;
+	private Vector<Event> events;
+	private BLFacadeHibernateInterface bl;
+	private String stringQuestion;
 
 	public CreateQuestionBean() {
-		// configxml = ConfigXML.getInstance();
-		eventos = new Vector<Event>();
-		// bda = new BeanDataAccess();
-		bda = DataAccessHibernate.getInstance();
-		// eventos.add(new Event("Evento 1", new Date(2021, 12, 31)));
-		// eventos.add(new Event("Evento 2", new Date(2020, 12, 31)));
-		bf = bda.getBLFAcade();
+		bl = BLFacadeHibernate.getInstance();
+	}
+	
+	public void createQuestion() throws EventFinished, QuestionAlreadyExist {
+		question = bl.createQuestion(event, stringQuestion, minBet);
+		System.out.println(question.toString());
+	}
+	
+	public void listener(AjaxBehaviorEvent evento) {
+		System.out.println("Evento:" + event.getDescription() + " -> "
+				+ event.getEventDate() + " -> " + event.getEventDate());
+		
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage("Evento:" + event.getDescription() + " -> "
+		+ event.getEventDate() + " -> " + event.getEventDate()));
 	}
 
-	public Date getFecha() {
-		return fecha;
+	public void getEvent(Date fecha) {
+		this.events = bl.getEvents(fecha);
 	}
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
-	public Event getPartido() {
-		return partido;
+	public Event getEvent() {
+		return event;
 	}
 
-	public void setPartido(Event partido) {
-		this.partido = partido;
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
-	public Question getPregunta() {
-		return pregunta;
+	public Question getQuestion() {
+		return question;
 	}
 
-	public void setPregunta(Question pregunta) {
-		this.pregunta = pregunta;
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
 
 	public int getMinBet() {
@@ -74,40 +87,27 @@ public class CreateQuestionBean {
 		this.minBet = minBet;
 	}
 	
-	public String getEscribirPregunta() {
-		return this.escribirPregunta;
+	public String getstringQuestion() {
+		return this.stringQuestion;
 	}
 	
-	public void setEscribirPregunta(String escribirPregunta) {
-		this.escribirPregunta = escribirPregunta;
+	public void setstringQuestion(String stringQuestion) {
+		this.stringQuestion = stringQuestion;
 	}
 
 	public void onDateSelect(SelectEvent e) {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + e.getObject()));
-		System.out.println(bf.getEvents((Date) e.getObject()));
-		setEventos(bf.getEvents((Date) e.getObject()));
+		System.out.println(bl.getEvents((Date) e.getObject()));
+		setEventos(bl.getEvents((Date) e.getObject()));
 	}
 
 	public Vector<Event> getEventos() {
-		return this.eventos;
+		return this.events;
 	}
 
 	public void setEventos(Vector<Event> eventos) {
-		this.eventos = eventos;
+		this.events = eventos;
 		// System.out.println(eventos.toString());
-	}
-
-	public void listener(AjaxBehaviorEvent event) {
-		System.out.println("Evento:" + partido.getDescription() + " -> "
-				+ partido.getEventDate() + " -> " + partido.getEventDate());
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Evento:" + partido.getDescription() + " -> "
-		+ partido.getEventDate() + " -> " + partido.getEventDate()));
-	}
-	
-	public void crearPregunta() throws EventFinished, QuestionAlreadyExist {
-		pregunta = bf.createQuestion(partido, escribirPregunta, minBet);
-		System.out.println(pregunta.toString());
 	}
 
 	/*

@@ -13,5 +13,6 @@
   <property name="hibernate.current_session_context_class">thread</property>
   <property name="hibernate.hbm2ddl.auto">create</property>
   <mapping class="dominio.Event"/>
+  <mapping class="dominio.Question"/>
  </session-factory>
 </hibernate-configuration>

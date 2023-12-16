@@ -14,8 +14,24 @@ public class Event {
 	private Date eventDate;
 	private Vector<Question> questions = new Vector<Question>();
 
-	public Event() {
+	public Event(int num, String nombre, Date fecha) {
+		this.eventNumber = num;
+		this.description = nombre;
+		this.eventDate = fecha;
 	}
+	
+	public Question addQuestion(String question, float betMinimum)  {
+	    Question q=new Question(question,betMinimum, this);
+	    questions.add(q);
+	    return q;
+	    }
+
+	public boolean DoesQuestionExists(String question)  {
+
+	    for (Question q:this.getQuestions()){
+	        if (q.getQuestion().compareTo(question)==0)
+	            return true;}
+	    return false;}
 
 	public Integer getEventNumber() {
 		return eventNumber;

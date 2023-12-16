@@ -3,29 +3,10 @@ package dataAccess;
 import java.util.Date;
 import java.util.Vector;
 
-import domain.Event;
-import domain.Question;
+import dominio.*;
 import exceptions.QuestionAlreadyExist;
 
 public interface DataAccessHibernateInterface {
-
-		
-	/**
-	 * This method opens the database
-	 */
-	void open();
-	
-	/**
-	 * This method closes the database
-	 */
-	void close();
-
-	
-	/**
-	 * This method removes all the elements of the database
-	 */
-	void emptyDatabase();
-	
 	
 	/**
 	 * This is the data access method that initializes the database with some events and questions.

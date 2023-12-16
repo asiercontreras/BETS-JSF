@@ -5,6 +5,9 @@ import dominio.Event;
 import dominio.Question;
 
 import org.hibernate.Session;
+
+import configuration.UtilDate;
+
 import java.util.*;
 
 public class CreateEvents {
@@ -34,19 +37,26 @@ public class CreateEvents {
 	}
 
 	public static void main(String[] args) {
-	Question q1 = new Question();
-	Question q2 = new Question();
-	Question q3 = new Question();
-
-
-		Vector<Question> q = new Vector<Question>();
-		q.add(q1);
-		q.add(q2);
-		q.add(q3);
+//	Question q1 = new Question();
+//	Question q2 = new Question();
+//	Question q3 = new Question();
+//
+//
+	Vector<Question> q = new Vector<Question>();
+//		q.add(q1);
+//		q.add(q2);
+//		q.add(q3);
+	
+	Calendar today = Calendar.getInstance();
+	   
+	   int month=today.get(Calendar.MONTH);
+	   month+=1;
+	   int year=today.get(Calendar.YEAR);
+	   if (month==12) { month=0; year+=1;}  
 
 		CreateEvents e = new CreateEvents();
 		System.out.println("Creación de eventos:");
-		e.createAndStoreEvent(1, "Atleti-Real", new Date(), q);
+		e.createAndStoreEvent(1, "Atleti-Real", UtilDate.newDate(year,month,17), q);
 		e.createAndStoreEvent(2, "Barsa-Madrid", new Date(), q);
 		e.createAndStoreEvent(3, "Alaves-Osasuna", new Date(), q);
 		System.out.println("Listado de eventos:");
