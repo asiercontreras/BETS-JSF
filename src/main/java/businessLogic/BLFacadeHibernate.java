@@ -4,50 +4,33 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-import javax.jws.WebMethod;
-import javax.jws.WebService;
-
-import configuration.ConfigXML;
+import dataAccess.DataAccessHibernate;
 import dataAccess.DataAccessHibernateInterface;
-import domain.Question;
-import domain.Event;
+import dominio.*;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
 /**
  * It implements the business logic as a web service.
  */
-@WebService(endpointInterface = "businessLogic.BLFacade")
-public class BLFacadeImplementation  implements BLFacade {
-	DataAccessHibernateInterface dbManager;
-
-	public BLFacadeImplementation()  {		
-		System.out.println("Creating BLFacadeImplementation instance");
-		ConfigXML c=ConfigXML.getInstance();
-		
-		/*if (c.getDataBaseOpenMode().equals("initialize")) {
-			
-		    dbManager=new DataAccessInterface(new ObjectDbDAOManager());
-			dbManager.initializeDB();
-			dbManager.close();
-			}
-		*/
-	}
+//@WebService(endpointInterface = "businessLogic.BLFacade")
+public final class BLFacadeHibernate  implements BLFacadeHibernateInterface {
 	
-    public BLFacadeImplementation(DataAccessHibernateInterface da)  {
-		
+	private DataAccessHibernateInterface dbManager;
+	private static BLFacadeHibernate instance;
+	
+    private BLFacadeHibernate(DataAccessHibernateInterface da)  {
 		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
-		ConfigXML c=ConfigXML.getInstance();
-		
-		if (c.getDataBaseOpenMode().equals("initialize")) {
-			da.emptyDatabase();
-			da.open();
-			da.initializeDB();
-			da.close();
-
-		}
-		dbManager=da;		
+		this.dbManager = da;		
 	}
+    
+    public static BLFacadeHibernate getInstance() {
+    	if (instance == null) {
+    		DataAccessHibernateInterface db = new DataAccessHibernate();
+    		instance = new BLFacadeHibernate(db);
+    	}
+    	return instance;
+    }
 	
 
 	/**
@@ -60,11 +43,11 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @throws EventFinished if current data is after data of the event
  	 * @throws QuestionAlreadyExist if the same question already exists for the event
 	 */
-   @WebMethod
+   //@WebMethod
    public Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist{
 	   
 	    //The minimum bed must be greater than 0
-		dbManager.open();
+		//dbManager.open();
 		Question qry=null;
 		
 	    
@@ -74,7 +57,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		
 		 qry=dbManager.createQuestion(event,question,betMinimum);		
 
-		dbManager.close();
+		//dbManager.close();
 		
 		return qry;
    };
@@ -85,11 +68,11 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @param date in which events are retrieved
 	 * @return collection of events
 	 */
-    @WebMethod	
+    //@WebMethod	
 	public Vector<Event> getEvents(Date date)  {
-		dbManager.open();
+		//dbManager.open();
 		Vector<Event>  events=dbManager.getEvents(date);
-		dbManager.close();
+		//dbManager.close();
 		return events;
 	}
 
@@ -100,33 +83,27 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @param date of the month for which days with events want to be retrieved 
 	 * @return collection of dates
 	 */
-	@WebMethod public Vector<Date> getEventsMonth(Date date) {
-		dbManager.open();
+	//@WebMethod 
+	public Vector<Date> getEventsMonth(Date date) {
+		//dbManager.open();
 		Vector<Date>  dates=dbManager.getEventsMonth(date);
-		dbManager.close();
+		//dbManager.close();
 		return dates;
 	}
 	
-	
-	public void close() {
-		//DataAccess dB4oManager=new DataAccess(false);
-
-		//dB4oManager.close();
-		dbManager.close();
-
-
-	}
 
 	/**
 	 * This method invokes the data access to initialize the database with some events and questions.
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
-    @WebMethod	
+    //@WebMethod	
 	 public void initializeBD(){
-    	dbManager.open();
+    	//dbManager.open();
 		dbManager.initializeDB();
-		dbManager.close();
+		//dbManager.close();
 	}
+
+	
 
 }
 

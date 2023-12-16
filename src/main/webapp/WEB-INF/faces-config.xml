@@ -8,8 +8,6 @@
 	<managed-bean>
 		<managed-bean-name>createQuestion</managed-bean-name>
 		<managed-bean-class>Bean.CreateQuestionBean</managed-bean-class>
-		<managed-bean-name>queryQuestion</managed-bean-name>
-		<managed-bean-class>Bean.QueryQuestionBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
