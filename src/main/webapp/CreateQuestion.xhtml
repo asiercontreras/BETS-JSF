@@ -37,7 +37,7 @@
 					<td><h:selectOneMenu id="comboboxEventos"
 							value="#{createQuestion.event}"
 							converter="omnifaces.SelectItemsConverter">
-							<f:selectItems value="#{createQuestion.events}" />
+							<f:selectItems value="#{createQuestion.event}" />
 							<p:ajax event="change" listener="#{createQuestion.listener}"
 								render="mensajes2"></p:ajax>
 						</h:selectOneMenu></td>
