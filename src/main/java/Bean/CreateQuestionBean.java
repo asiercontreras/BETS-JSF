@@ -3,6 +3,7 @@ package Bean;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Vector;
 
 import javax.faces.application.FacesMessage;
@@ -98,8 +99,11 @@ public class CreateQuestionBean {
 	}
 
 	public void onDateSelect(SelectEvent e) {
-
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + e.getObject()));
+		Date selectedDate = (Date) e.getObject();
+		// Formatear la fecha a otro formato deseado (por ejemplo, "dd/MM/yyyy")
+		SimpleDateFormat sdf = new SimpleDateFormat("d 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
+		String formattedDate = sdf.format(selectedDate);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + formattedDate));
 		// System.out.println(bl.getEvents((Date) e.getObject()));
 		System.out.println("-----------------------------------------------------");
 		System.out.println("Los Eventos ANTES:" + this.getEvents());
@@ -117,16 +121,13 @@ public class CreateQuestionBean {
 
 	public void setEvents(Vector<Event> eventos) {
 		this.events = eventos;
-		// System.out.println(eventos.toString());
 	}
+	public void setEvento() {
+		System.out.println("EVENTO----------------");
 
-	/*
-	 * public void onAsignarClave(SelectEvent e) { eventos =
-	 * bf.getEvents((Date)e.getObject()); }
-	 */
+		System.out.println(event.toString());
+		
+	}
+	
 
-	/*
-	 * public Vector<Event> getEventsBD(Date date){ eventos = bf.getEvents(fecha);
-	 * return eventos; }
-	 */
 }

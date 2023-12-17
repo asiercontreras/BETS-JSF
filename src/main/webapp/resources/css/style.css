@@ -18,6 +18,7 @@
 	background-color: #dbdbdb;
 	position: absolute;
 	border-radius: 5px;
+	margin-bottom: 40px;
 }
 
 body {
@@ -32,6 +33,7 @@ body {
 
 #fecha {
 	margin-right: 45px;
+	margin-bottom: 60px;
 }
 
 #maindiv button {

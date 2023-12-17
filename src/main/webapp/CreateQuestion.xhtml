@@ -38,13 +38,11 @@
 							value="#{createQuestion.event}"
 							converter="omnifaces.SelectItemsConverter">
 							<f:selectItems value="#{createQuestion.events}" />
-							<p:ajax event="change" listener="#{createQuestion.setEventos}"
-								render="mensajes2"></p:ajax>
+							<p:ajax event="change" listener="#{createQuestion.setEvento}"
+								update="mensajes2"></p:ajax>
 						</h:selectOneMenu></td>
 				</tr>
-				<tr>
-					<td><h:messages id="mensajes2" style="color:green" /></td>
-				</tr>
+				
 
 				<table>
 					<tr>
@@ -57,13 +55,18 @@
 						<td><h:inputText id="minBet" value="#{createQuestion.minBet}"></h:inputText></td>
 					</tr>
 				</table>
+				<tr>
+					<td><h:messages id="mensajes2" style="color:green" /></td>
+				</tr>
 				<p>
 					<h:commandButton value="Crear pregunta"
 						action="#{createQuestion.createQuestion}" />
 				</p>
 
 			</h:form>
-			
+			<a href="./Main.xhtml">
+		<button id="createbet">ATRAS</button>
+	</a>
 		</h:body>
 	</f:view>
 </ui:composition>

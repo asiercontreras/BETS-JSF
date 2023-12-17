@@ -9,38 +9,41 @@ import javax.persistence.*;
 
 @Entity
 public class Event {
-	@Id@GeneratedValue
+	@Id
+	@GeneratedValue
 	private Integer eventNumber;
 	private String description;
 	private Date eventDate;
-	
+
 //Se ha tenido que cambiar el vector a set porque hibernate no puede mappear vectores si no set.
 //Problema encontrado para comentar en el documento, creo que sera im
-	@OneToMany(mappedBy="event", fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	//private Vector<Question> questions = new Vector<Question>();
-	private Set<Question> questions=new HashSet<Question>();
+	@OneToMany(mappedBy = "event", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	// private Vector<Question> questions = new Vector<Question>();
+	private Set<Question> questions = new HashSet<Question>();
 
 	public Event() {
 	}
-	
+
 	public Event(int num, String nombre, Date fecha) {
 		this.eventNumber = num;
 		this.description = nombre;
 		this.eventDate = fecha;
 	}
-	
-	public Question addQuestion(String question, float betMinimum)  {
-	    Question q=new Question(question,betMinimum, this);
-	    questions.add(q);
-	    return q;
-	    }
 
-	public boolean DoesQuestionExists(String question)  {
+	public Question addQuestion(String question, float betMinimum) {
+		Question q = new Question(question, betMinimum, this);
+		questions.add(q);
+		return q;
+	}
 
-	    for (Question q:this.getQuestions()){
-	        if (q.getQuestion().compareTo(question)==0)
-	            return true;}
-	    return false;}
+	public boolean DoesQuestionExists(String question) {
+
+		for (Question q : this.getQuestions()) {
+			if (q.getQuestion().compareTo(question) == 0)
+				return true;
+		}
+		return false;
+	}
 
 	public Integer getEventNumber() {
 		return eventNumber;
@@ -72,6 +75,11 @@ public class Event {
 
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
+	}
+
+	@Override
+	public String toString() {
+		return description;
 	}
 
 }

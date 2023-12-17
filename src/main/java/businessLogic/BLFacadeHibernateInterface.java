@@ -35,13 +35,7 @@ public interface BLFacadeHibernateInterface  {
 	 */
 	public Vector<Event> getEvents(Date date);
 	
-	/**
-	 * This method retrieves from the database the dates a month for which there are events
-	 * 
-	 * @param date of the month for which days with events want to be retrieved 
-	 * @return collection of dates
-	 */
-	public Vector<Date> getEventsMonth(Date date);
+
 	
 	/**
 	 * This method calls the data access to initialize the database with some events and questions.

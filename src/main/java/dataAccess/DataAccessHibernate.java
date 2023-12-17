@@ -143,18 +143,18 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 		System.out.println(">> DataAccess: createQuestion=> event= " + event + " question= " + question + " betMinimum="
 				+ betMinimum);
 
-		// Event ev = dbMa.find(Event.class, event.getEventNumber());
 		Query query = session.createQuery("FROM Event WHERE eventNumber = :number");
 		query.setParameter("number", event.getEventNumber());
 		Event myEvent = (Event) query.uniqueResult();
-
-		if (myEvent.DoesQuestionExists(question))
-			throw new QuestionAlreadyExist();
+		if (myEvent.DoesQuestionExists(question)) {
+			// throw new QuestionAlreadyExist();
+			System.out.println("Ya existe una pregunta con ese nombre");
+			session.getTransaction().rollback();
+		}
 
 		Question q = myEvent.addQuestion(question, betMinimum);
 		// session.save(q);
-		session.save(myEvent);
-
+		session.persist(myEvent);
 		session.getTransaction().commit();
 
 		return q;
@@ -188,34 +188,6 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 		return res;
 	}
 
-	/**
-	 * This method retrieves from the database the dates a month for which there are
-	 * events
-	 * 
-	 * @param date of the month for which days with events want to be retrieved
-	 * @return collection of dates
-	 */
-	public Vector<Date> getEventsMonth(Date date) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		System.out.println(">> DataAccess: getEventsMonth");
-		Vector<Date> res = new Vector<Date>();
-
-		Date firstDayMonthDate = UtilDate.firstDayMonth(date);
-		Date lastDayMonthDate = UtilDate.lastDayMonth(date);
-
-		TypedQuery<Date> query = db.createQuery(
-				"SELECT DISTINCT ev.eventDate FROM Event ev WHERE ev.eventDate BETWEEN ?1 and ?2", Date.class);
-		query.setParameter(1, firstDayMonthDate);
-		query.setParameter(2, lastDayMonthDate);
-		List<Date> dates = query.getResultList();
-		for (Date d : dates) {
-			System.out.println(d.toString());
-			res.add(d);
-		}
-		return res;
-	}
-
 	public boolean existQuestion(Event event, String question) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -230,7 +202,6 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 
 	}
 
-	
 	/**
 	 * Returns a vector with the questions
 	 */
