@@ -20,7 +20,7 @@ import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 import businessLogic.BLFacadeHibernateInterface;
 import businessLogic.BLFacadeHibernate;
-import resources.*;
+//import resources.*;
 import configuration.*;
 import dataAccess.DataAccessHibernate;
 

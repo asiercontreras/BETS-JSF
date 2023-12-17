@@ -147,9 +147,10 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 		query.setParameter("number", event.getEventNumber());
 		Event myEvent = (Event) query.uniqueResult();
 		if (myEvent.DoesQuestionExists(question)) {
-			// throw new QuestionAlreadyExist();
+			
 			System.out.println("Ya existe una pregunta con ese nombre");
-			session.getTransaction().rollback();
+			
+			throw new QuestionAlreadyExist("Ya existe una pregunta con ese nombre");
 		}
 
 		Question q = myEvent.addQuestion(question, betMinimum);

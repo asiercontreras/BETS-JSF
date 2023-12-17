@@ -39,11 +39,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/bets.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="lib/antlr-2.7.6.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>

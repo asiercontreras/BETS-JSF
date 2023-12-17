@@ -47,5 +47,13 @@
 			<to-view-id>/Register.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>CreateQuestion.xhtml</display-name>
+		<from-view-id>/CreateQuestion.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>iratras</from-outcome>
+			<to-view-id>/Main.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

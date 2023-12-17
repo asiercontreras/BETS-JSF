@@ -13,7 +13,17 @@
 #querydiv {
 	padding: 40px;
 	width: 80%;
-	left: 10%;
+	left: 5%;
+	top: 20%;
+	background-color: #dbdbdb;
+	position: absolute;
+	border-radius: 5px;
+	margin-bottom: 40px;
+}
+#creatediv{
+		padding: 40px;
+	width: 65%;
+	left: 15%;
 	top: 20%;
 	background-color: #dbdbdb;
 	position: absolute;
@@ -117,9 +127,10 @@ p\\:dataTable[id="tablaPreguntas"] {
 	width: 410px;
 }
 
-button {
+button, .custom-button {
 	padding: 8px 16px;
-	width: 150px; height : 40px;
+	width: 150px;
+	height: 40px;
 	background-color: #86adb8;
 	color: #fff;
 	border: none;

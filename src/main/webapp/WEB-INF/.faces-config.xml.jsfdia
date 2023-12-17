@@ -29,5 +29,11 @@
  <PROCESS-ITEM NAME="rules:#Login.xhtml" PATH="/Login.xhtml"
   SHAPE="288,353,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#CreateQuestion.xhtml"
-  PATH="/CreateQuestion.xhtml" SHAPE="288,33,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/CreateQuestion.xhtml" SHAPE="288,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#CreateQuestion.xhtml:0" NAME="item"
+   PATH="/CreateQuestion.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="iratras::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="iratras" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>
