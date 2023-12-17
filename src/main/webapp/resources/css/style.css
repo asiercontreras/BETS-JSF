@@ -1,40 +1,131 @@
 #maindiv {
-    text-align: center; 
-    padding: 40px;
-    border-radius: 5px;
-    background-color: #dbdbdb;
-    display: inline-block;
-  
-	
-	
+	text-align: center;
+	padding: 40px;
+	border-radius: 5px;
+	background-color: #dbdbdb;
+	display: inline-block;
+	position: absolute;
+	width: 33%;
+	left: 33%;
+	top: 20%;
 }
 
-body{
-	background-color: #cdd4cf;
-	text-align: center;
-	 font-family: 'Arial', sans-serif; 
+#querydiv {
+	padding: 40px;
+	width: 80%;
+	left: 10%;
+	top: 20%;
+	background-color: #dbdbdb;
+	position: absolute;
+	border-radius: 5px;
 }
+
+body {
+	background-color: #cdd4cf;
+	font-family: 'Arial', sans-serif;
+}
+
 #maindiv a {
-    display: block; 
-    margin-bottom: 10px;
+	display: block;
+	margin-bottom: 10px;
+}
+
+#fecha {
+	margin-right: 45px;
 }
 
 #maindiv button {
-   
-    padding: 8px 16px;
-    width: 300px;
-    height: 60px;
-    
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+	width: 100%;
+	height: 60px;
 }
-#maindiv button:hover {
-    background-color: #0056b3; 
+
+/* Estilos para el encabezado h1 */
+h1 {
+	padding-top: 30px;
+	text-align: center;
+	color: #333;
 }
-#mainh1{
-	    text-align: center; 
-	
+
+/* Estilos para las tablas */
+table {
+	width: 80%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+th, td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+/* Estilo para las celdas de encabezado */
+th {
+	font-weight: bold;
+}
+
+/* Estilo para las filas impares */
+tr:nth-child(odd) {
+	background-color: #f9f9f9;
+}
+
+/* Estilo para las filas pares */
+tr:nth-child(even) {
+	background-color: #fff;
+}
+/* Estilos para los mensajes de error o éxito */
+h\\:messages {
+	font-style: italic;
+	color: blue;
+}
+
+ul {
+	list-style-type: none;
+	padding-left: 10px;
+}
+
+#text {
+	display: left;
+}
+
+/* Estilos para la tabla de eventos */
+p\\:dataTable[id="tablaEventos"] {
+	margin-bottom: 20px;
+}
+
+/* Estilos para la tabla de preguntas */
+p\\:dataTable[id="tablaPreguntas"] {
+	margin-bottom: 20px;
+}
+
+#ctdiv {
+	display: flex;
+	margin-bottom: 40px;
+}
+
+#tablaPreguntas {
+	width: 80%;
+}
+
+#calendarioymensaje {
+	width: 410px;
+}
+
+button {
+	padding: 8px 16px;
+	width: 150px; height : 40px;
+	background-color: #86adb8;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	height: 40px;
+}
+
+button:hover {
+	background-color: #475b61;
 }

@@ -2,56 +2,70 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core"	
-xmlns:p="http://primefaces.org/ui">
-
-
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<!--  <meta charset="ISO-8859-1">-->
+	<!--  <meta charset="ISO-8859-1">-->
 
-<title>QUERY QUESTIONS</title>
-<h:outputStylesheet library="css" name="style.css" />
+	<title>QUERY QUESTIONS</title>
+	<h:outputStylesheet library="css" name="style.css" />
 
 </h:head>
 <h:body>
-<h1>QUERY QUESTIONS</h1>
+	<h1>QUERY QUESTIONS</h1>
+<div id="querydiv">
+	<h:form id="formQuestion">
+		<td id="titulofecha"><h3>Fecha:</h3></td>
+		<div id="ctdiv">
+			<div id="calendarioymensaje">
+				<tr>
 
-<h:form id="miForm">
-
-	<tr>
-					<td>Fecha:</td>
-					<td><p:calendar id="fecha" value="#{queryQuestion.date}" navigator="false" mode="inline">
-							<p:ajax event="dateSelect"	listener="#{queryQuestion.onDateSelect}" update="tablaEventos"></p:ajax>
+					<td><p:calendar id="fecha" value="#{queryQuestion.date}"
+							navigator="false" mode="inline">
+							<p:ajax event="dateSelect"
+								listener="#{queryQuestion.onDateSelect}"
+								update="mensajes :formQuestion:tablaEventos"></p:ajax>
 						</p:calendar></td>
 				</tr>
-		
+
 				<tr>
-					<td><h:messages id="mensajes" style="color:blue" /></td>
+					<td><h:messages id="mensajes" style="color:#1c6378" /></td>
 				</tr>
-				<tr>
-				<td><p:dataTable id="tablaEventos" value="#{queryQuestion.events}" var="event" 	selectionMode="single"	selection="#{queryQuestion.event}" border="1" rowKey="#{event.eventNumber}">
-					<p:ajax event="rowSelect" listener="#{queryQuestion.showQuestions}" update=":miForm:tablaPreguntas"></p:ajax>
-					<f:facet name="header">Eventos:</f:facet>
-					<p:column headerText="NumEvento">#{event.eventNumber}</p:column>
-					<p:column headerText="Evento">#{event.description}</p:column>
-					</p:dataTable></td>				
-				</tr> 
-				
-				
-				<tr>
-				<td>
-				<p:dataTable id="tablaPreguntas" value="#{queryQuestion.questions}" var="q" selection="#{queryQuestion.question}" border="1"  disabledSelection="TRUE">
-					<f:facet name="header">Preguntas:</f:facet>
+
+			</div>
+			<tr>
+				<td><p:dataTable id="tablaEventos"
+						value="#{queryQuestion.events}" var="event" selectionMode="single"
+						selection="#{queryQuestion.event}" border="1"
+						rowKey="#{event.eventNumber}">
+						<p:ajax event="rowSelect"
+							listener="#{queryQuestion.showQuestions}"
+							update=":formQuestion:tablaPreguntas"></p:ajax>
+						<f:facet name="header">Eventos</f:facet>
+						<p:column headerText="NumEvento">#{event.eventNumber}</p:column>
+						<p:column headerText="Evento">#{event.description}</p:column>
+					</p:dataTable></td>
+			</tr>
+		</div>
+
+		<tr>
+			<td><p:dataTable id="tablaPreguntas"
+					value="#{queryQuestion.questions}" var="q"
+					selection="#{queryQuestion.question}" border="1"
+					disabledSelection="TRUE">
+					<f:facet name="header">Preguntas</f:facet>
 					<p:column headerText="NumPregunta">#{q.questionNumber}</p:column>
 					<p:column headerText="Pregunta">#{q.question}</p:column>
-					</p:dataTable>
-				</td>				
-				</tr> 
-				
-</h:form>
+				</p:dataTable></td>
+		</tr>
 
-
+	</h:form>
+	<a href="./Main.xhtml">
+		<button id="createbet">ATRAS</button>
+	</a>
+	
+	</div>
 </h:body>
 </html>

@@ -1,5 +1,6 @@
 package Bean;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -93,8 +94,15 @@ public class QueryQuestionBean {
 	}
 
 	public void onDateSelect(SelectEvent e) {
+		Date selectedDate = (Date) e.getObject();
+		// Formatear la fecha a otro formato deseado (por ejemplo, "dd/MM/yyyy")
+		SimpleDateFormat sdf = new SimpleDateFormat("d 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
+		String formattedDate = sdf.format(selectedDate);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + formattedDate));
+		
 		this.setEvents(bl.getEvents((Date) e.getObject()));
 	}
+
 	public void showQuestions() {
 		this.setQuestions(bl.getQuestions(event));
 	}

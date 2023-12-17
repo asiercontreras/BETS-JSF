@@ -20,14 +20,13 @@
 			<h:form id="miForm">
 
 				<tr>
-					<td>Fecha:</td>
+					<td id="titulofecha"><h3>Fecha:</h3></td>
 					<td><p:calendar id="fecha" value="#{createQuestion.fecha}"
 							navigator="false" mode="inline">
 							<p:ajax event="dateSelect"
 								listener="#{createQuestion.onDateSelect}"
 								update="mensajes :miForm:comboboxEventos"></p:ajax>
-						</p:calendar>
-					</td>
+						</p:calendar></td>
 				</tr>
 				<tr>
 					<td><h:messages id="mensajes" style="color:blue" /></td>
@@ -50,7 +49,8 @@
 				<table>
 					<tr>
 						<td>Question:</td>
-						<td><h:inputText id="pregunta" value="#{createQuestion.stringQuestion}"></h:inputText></td>
+						<td><h:inputText id="pregunta"
+								value="#{createQuestion.stringQuestion}"></h:inputText></td>
 					</tr>
 					<tr>
 						<td>Min Bet:</td>
@@ -58,10 +58,12 @@
 					</tr>
 				</table>
 				<p>
-					<h:commandButton value="Crear pregunta" action="#{createQuestion.createQuestion}" />
+					<h:commandButton value="Crear pregunta"
+						action="#{createQuestion.createQuestion}" />
 				</p>
 
 			</h:form>
+			
 		</h:body>
 	</f:view>
 </ui:composition>
