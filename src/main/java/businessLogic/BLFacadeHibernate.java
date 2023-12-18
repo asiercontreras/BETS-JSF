@@ -82,11 +82,12 @@ public final class BLFacadeHibernate  implements BLFacadeHibernateInterface {
 	
 	
 	public Vector<Question> getQuestions(Event event){
-		
 		return dbManager.getQuestions(event);
 	}
 
-	
+	public boolean insertUser(String user, String pass) {
+		return dbManager.insertUser(user, pass);
+	}
 
 }
 

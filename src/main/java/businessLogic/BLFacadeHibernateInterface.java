@@ -49,4 +49,6 @@ public interface BLFacadeHibernateInterface  {
 	 * Returns the questions associated to an Event
 	 */	
 	
+	
+	public boolean insertUser(String user, String pass);
 }

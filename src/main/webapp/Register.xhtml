@@ -7,20 +7,22 @@ xmlns:h="http://java.sun.com/jsf/html"
 xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 <!--  <meta charset="ISO-8859-1">-->
-
-<title>register</title>
-<h:outputStylesheet library="css" name="style.css" />
-
+    <title>Registration Page</title>
+    <h:outputStylesheet library="css" name="style.css" />
 </h:head>
-<h:body>
-<h1>REGISTER</h1>
-<h:form>
-	<h:outputLabel for="username" value="Username:" />
-    <h:inputText id="username" value="#{RegisterBean.username}" />
-    <h:commandButton value="Submit" action="#{RegisterBean.submit}" />
-    
-</h:form>
 
+<body>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="username">Username:</h:outputLabel>
+            <h:inputText id="username" value="#{registerBean.username}" />
 
-</h:body>
+            <h:outputLabel for="password">Password:</h:outputLabel>
+            <h:inputSecret id="password" value="#{registerBean.password}" />
+
+            <h:commandButton value="Register" action="#{registerBean.register}" />
+        </h:panelGrid>
+    </h:form>
+</body>
+
 </html>

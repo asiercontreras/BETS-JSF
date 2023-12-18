@@ -51,6 +51,7 @@ public interface DataAccessHibernateInterface {
 	Vector<Question> getQuestions(Event e);
 	
 	
+	public boolean insertUser(String user, String pass);
 	
 
 	
