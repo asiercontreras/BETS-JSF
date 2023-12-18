@@ -18,64 +18,71 @@
 		<h:body>
 			<h1>CREATE QUESTIONS</h1>
 			<div id="creatediv">
-			<h:form id="miForm">
+				<h:form id="miForm">
 
-				
+
 					<td id="titulofecha"><h3>Fecha:</h3></td>
 					<div id="ctdiv">
-					<div id="calendarioymensaje">
-					<tr>
-					
-					<td><p:calendar id="fecha" value="#{createQuestion.fecha}"
-							navigator="false" mode="inline">
-							<p:ajax event="dateSelect"
-								listener="#{createQuestion.onDateSelect}"
-								update="mensajes :miForm:comboboxEventos"></p:ajax>
-						</p:calendar></td>
-				</tr>
-				<tr>
-					<td><h:messages id="mensajes" style="color:blue" /></td>
-				</tr>
-				</div>
+						<div id="calendarioymensaje">
+							<tr>
 
-				<tr>
-					<td><h3>Eventos:</h3></td>
-					<td><h:selectOneMenu id="comboboxEventos"
-							value="#{createQuestion.event}"
-							converter="omnifaces.SelectItemsConverter" style="height:40px;width: 250px;margin-top:10px;margin-left:15px;">
-							<f:selectItems value="#{createQuestion.events}" />
-							<p:ajax event="change" listener="#{createQuestion.setEvento}"
-								update="mensajes2"></p:ajax>
-						</h:selectOneMenu></td>
-				</tr>
-				
-</div>
-				<table id="tablacreate" style="width:100%;">
-					<tr>
-						<td>Question:</td>
-						<td><h:inputText id="pregunta"
-								value="#{createQuestion.stringQuestion}" style="width:100%"></h:inputText></td>
-					</tr>
-					<tr>
-						<td>Min Bet:</td>
-						<td><h:inputText id="minBet" value="#{createQuestion.minBet}"></h:inputText></td>
-					</tr>
-				</table>
-				<tr>
-					<td><h:messages id="mensajes2" style="color:green" /></td>
-				</tr>
-				<p>
-					<h:commandButton value="CREAR PREGUNTA"
-						action="#{createQuestion.createQuestion}" class="custom-button" style="width:180px"/>
-						<h:commandButton value="ATRAS"
-						action="iratras" class="custom-button" style="margin-left:30px;"  />
-						
-						
-				</p>
+								<td><p:calendar id="fecha" value="#{createQuestion.fecha}"
+										navigator="false" mode="inline">
+										<p:ajax event="dateSelect"
+											listener="#{createQuestion.onDateSelect}"
+											update="mensajes :miForm:comboboxEventos"></p:ajax>
+									</p:calendar></td>
+							</tr>
+							<tr>
+								<td><h:messages id="mensajes" style="color:blue" /></td>
+							</tr>
+						</div>
 
-			</h:form>
-			
-	</div>
+						<tr>
+							<td><h3>Eventos:</h3></td>
+							<td><h:selectOneMenu id="comboboxEventos"
+									value="#{createQuestion.event}"
+									converter="omnifaces.SelectItemsConverter"
+									style="height:40px;width: 250px;margin-top:10px;margin-left:15px;">
+									<f:selectItems value="#{createQuestion.events}" />
+									<p:ajax event="change" listener="#{createQuestion.setEvento}"></p:ajax>
+								</h:selectOneMenu></td>
+						</tr>
+
+					</div>
+					<table id="tablacreate" style="width: 100%;">
+						<tr>
+							<td>Question:</td>
+							<td><h:inputText id="pregunta"
+									value="#{createQuestion.stringQuestion}" style="width:100%"></h:inputText></td>
+						</tr>
+						<tr>
+							<td>Min Bet:</td>
+							<td><h:inputText id="minBet"
+									value="#{createQuestion.minBet}"></h:inputText></td>
+						</tr>
+					</table>
+					<tr>
+						<td><h:messages id="mensajeFinal"
+								styleClass="custom-messages" /> 
+							</td>
+					</tr>
+
+					<p>
+						<h:commandButton value="CREAR PREGUNTA" class="custom-button"
+							style="width:180px" update="mensajeFinal">
+							<f:ajax execute="miForm" render="mensajeFinal"
+								listener="#{createQuestion.createQuestion}" />
+						</h:commandButton>
+						<h:commandButton value="ATRAS" action="iratras"
+							class="custom-button" style="margin-left:30px;" />
+
+
+					</p>
+
+				</h:form>
+
+			</div>
 		</h:body>
 	</f:view>
 </ui:composition>

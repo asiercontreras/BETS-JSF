@@ -142,3 +142,11 @@ button, .custom-button {
 button:hover {
 	background-color: #475b61;
 }
+
+
+/*colores messages*/
+.custom-messages {
+    /* Estilos generales para mensajes */ 
+    color: black;
+}
+

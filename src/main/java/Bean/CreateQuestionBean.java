@@ -32,7 +32,7 @@ public class CreateQuestionBean {
 	private Date fecha;
 	private Event event;
 	private Question question;
-	private int minBet;
+	private float minBet;
 	private Vector<Event> events;
 	private BLFacadeHibernateInterface bl;
 	private String stringQuestion;
@@ -42,8 +42,34 @@ public class CreateQuestionBean {
 	}
 
 	public void createQuestion() throws EventFinished, QuestionAlreadyExist {
-		question = bl.createQuestion(event, stringQuestion, minBet);
-		System.out.println(question.toString());
+		System.out.println("String: " + stringQuestion);
+		System.out.println("minBet: " + minBet);
+		if (event == null) {
+			FacesContext.getCurrentInstance().addMessage("mensajeFinal",
+					new FacesMessage("No hay ningún evento seleccionado"));
+			
+
+		} else if (stringQuestion == "") {
+			FacesContext.getCurrentInstance().addMessage("mensajeFinal",
+					new FacesMessage("El evento no puede ser nulo"));
+
+		} else {
+
+			try {
+				question = bl.createQuestion(event, stringQuestion, minBet);
+				FacesContext.getCurrentInstance().addMessage("mensajeFinal",
+						new FacesMessage("Evento con la pregunta: " + question.toString() + " creado"));
+				stringQuestion="";
+			} catch (QuestionAlreadyExist e) {
+				FacesContext.getCurrentInstance().addMessage("mensajeFinal",
+						new FacesMessage("Ya existe un evento con la pregunta " + question.toString() + "."));
+			} catch (EventFinished event) {
+				FacesContext.getCurrentInstance().addMessage("mensajeFinal",
+						new FacesMessage("Estas añadiendo una pregunta a un evento pasado."));
+
+			}
+		}
+
 	}
 
 	public void listener(AjaxBehaviorEvent evento) {
@@ -82,11 +108,11 @@ public class CreateQuestionBean {
 		this.question = question;
 	}
 
-	public int getMinBet() {
+	public float getMinBet() {
 		return minBet;
 	}
 
-	public void setMinBet(int minBet) {
+	public void setMinBet(float minBet) {
 		this.minBet = minBet;
 	}
 
@@ -122,12 +148,12 @@ public class CreateQuestionBean {
 	public void setEvents(Vector<Event> eventos) {
 		this.events = eventos;
 	}
+
 	public void setEvento() {
 		System.out.println("EVENTO----------------");
 
 		System.out.println(event.toString());
-		
+
 	}
-	
 
 }

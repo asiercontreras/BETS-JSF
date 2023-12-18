@@ -49,8 +49,14 @@ public class Question {
 		return event;
 	}
 
-	public void setEvent(Event event) {
+	public void setEvento(Event event) {
 		this.event = event;
 	}
+
+	@Override
+	public String toString() {
+		return question;
+	}
+	
 
 }
