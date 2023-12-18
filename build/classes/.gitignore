@@ -1,6 +1,8 @@
 /Bean/
+/businessLogic/
+/configuration/
+/dataAccess/
 /dominio/
-/resources/
+/exceptions/
 /hibernate.cfg.xml
 /modelo/
-/principal/

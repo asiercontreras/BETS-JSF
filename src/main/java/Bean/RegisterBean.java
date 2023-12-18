@@ -22,6 +22,8 @@ public class RegisterBean {
 	
 	
     private String username;
+    
+    //Debería llegarnos en Base64
     private String password;
     
     

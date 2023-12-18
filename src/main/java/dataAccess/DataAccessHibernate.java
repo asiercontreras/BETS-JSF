@@ -229,21 +229,40 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 	 * Inserta un usuario nuevo en la base de datos. Método creado para register. 
 	 * @return
 	 */
-	public boolean insertUser(String user, String pass) {
+	public boolean insertUser(String user, String pass, String salt) {
 		try {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		
-		User myUser = new User(user, pass);
-		session.save(myUser);
-		
-		session.getTransaction().commit();
-		return true;
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			
+			User myUser = new User(user, pass, salt);
+			session.save(myUser);
+			
+			session.getTransaction().commit();
+			return true;
 		}
 		catch(Exception e) {
+			if (e instanceof org.hibernate.NonUniqueObjectException) {
+		        System.out.println("Se ha intentado insertar un usuario con el mismo username.");
+		    }
 			return false;
 		}
 		
+	}
+	
+	public User getUser(String user) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			
+			Query query = session.createQuery("FROM User WHERE username = :usern");
+			query.setParameter("usern", user);
+			User myUser = (User) query.uniqueResult();
+			
+			return myUser;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

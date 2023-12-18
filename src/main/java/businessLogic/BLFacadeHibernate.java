@@ -10,6 +10,9 @@ import dominio.*;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 /**
  * It implements the business logic as a web service.
  */
@@ -86,7 +89,39 @@ public final class BLFacadeHibernate  implements BLFacadeHibernateInterface {
 	}
 
 	public boolean insertUser(String user, String pass) {
-		return dbManager.insertUser(user, pass);
+		
+		// Un salt es pequeño valor aleatorio
+		String salt = BCrypt.gensalt();
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		// Se concatena el salt (valor aleatorio) con la contraseña y se encodifica con la librería crypto de spring
+		String hashedPassword = encoder.encode(salt + pass);
+		
+		/**
+		 * Lo interesante es que ahora tenemos una contraseña hasheada y nuestro salt
+		 * Guardaremos ambos en la base de datos, y cuando necesitemos comparar la
+		 * contraseña para el login, por ejemplo, repetimos la operación anterior con
+		 * la contraseña introducida y compararemos los valores.
+		 * 
+		 * Esta es la manera (o una de las maneras) más modernas de almacenar contraseñas
+		 */
+		
+		return dbManager.insertUser(user, hashedPassword, salt);
+
+	}
+	
+	public boolean checkUserPass(String user, String pass) {
+		User myUser;
+		if ((myUser = dbManager.getUser(user)) == null) {
+			System.out.println("No se ha encontrado user");
+			return false;
+		}
+			
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        
+		// Este método nunca decodifica la contraseña, lo unico que hace es comparar
+        return encoder.matches(myUser.getSalt() + pass, myUser.getPassword());
 	}
 
 }

@@ -33,7 +33,7 @@ public interface DataAccessHibernateInterface {
 	 */
 	Vector<Event> getEvents(Date date);
 
-
+	
 
 	
 	/**
@@ -51,9 +51,9 @@ public interface DataAccessHibernateInterface {
 	Vector<Question> getQuestions(Event e);
 	
 	
-	public boolean insertUser(String user, String pass);
+	public boolean insertUser(String user, String pass, String salt);
 	
-
+	public User getUser(String user);
 	
 
 }

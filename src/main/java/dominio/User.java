@@ -1,9 +1,6 @@
 package dominio;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -11,22 +8,17 @@ public class User {
 	
 	
 	@Id
-	@GeneratedValue
-	private Integer id;
 	private String username;
 	private String password;
+	private String salt;
 	
-	public User(String user, String pass) {
+	public User() {
+	}
+	
+	public User(String user, String pass, String salt) {
 		this.username = user;
 		this.password = pass;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+		this.salt = salt;
 	}
 
 	public String getUsername() {
@@ -43,5 +35,13 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getSalt() {
+		return salt;
+	}
+	
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 }
