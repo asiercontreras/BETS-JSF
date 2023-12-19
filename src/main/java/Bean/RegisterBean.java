@@ -1,7 +1,10 @@
 package Bean;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import businessLogic.BLFacadeHibernate;
 import businessLogic.BLFacadeHibernateInterface;
@@ -48,16 +51,26 @@ public class RegisterBean {
     	this.password = password;
     }
 
-    public String register() {
+    public void register() {
     	if (bl.insertUser(username, password)) {
     		System.out.println("Se ha insertado " + this.getUsername() + " correctamente." + " Su pass es: " + this.getPassword());
+    		FacesContext.getCurrentInstance().addMessage("mensajeRegisterFinal",
+    				new FacesMessage("Registrado."));
     		//return "registrado";
     	} else{
     		System.out.println("Incorrecto");
+    		FacesContext.getCurrentInstance().addMessage("mensajeRegisterFinal",
+    				new FacesMessage("El nombre de usuario con el que te quieres registrar ya existe."));
     		//return "noRegistrado";
     	}
-    	
-    	
-    	return "success";
+    	//return "success";
     }
+    
+    public void listener(AjaxBehaviorEvent evento) {
+		System.out.println(
+				"Registe user:" + username + " -> " + password);
+
+		FacesContext.getCurrentInstance().addMessage("mensajeRegisterFinal", new FacesMessage(
+				"Reister user:" + username + " -> " + password));
+	}
 }

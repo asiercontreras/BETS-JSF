@@ -4,8 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<!--  <meta charset="ISO-8859-1">-->
 
@@ -20,13 +19,13 @@
 		<h:form id="miForm">
 			<table>
 				<tr>
-					<td>Usuario:</td>
-					<td><h:inputText id="user" value="#{dLogin.usuario}"></h:inputText></td>
+					<td>Username:</td>
+					<td><h:inputText id="userLog" value="#{loginBean.usuario}"></h:inputText></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><h:inputSecret id="pass" redisplay="true"
-							value="#{dLogin.password}">
+					<td><h:inputSecret id="passLog" redisplay="true"
+							value="#{loginBean.password}">
 						</h:inputSecret></td>
 				</tr>
 			</table>
@@ -37,7 +36,7 @@
 			<p>
 				<h:commandButton id="bLogin" value="LOGIN" class="custom-button"
 					style="width:180px" update="mensajeLoginFinal"
-					action="#{dLogin.checkUserPass}">
+					action="#{loginBean.checkUserPass}">
 				</h:commandButton>
 				<h:commandButton value="ATRAS" action="iratrasLog"
 							class="custom-button" style="margin-left:30px;" />

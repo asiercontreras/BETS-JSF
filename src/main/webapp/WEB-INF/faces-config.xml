@@ -21,7 +21,7 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>dLogin</managed-bean-name>
+		<managed-bean-name>loginBean</managed-bean-name>
 		<managed-bean-class>Bean.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
@@ -93,10 +93,10 @@
 	</navigation-rule>
 	
 	<navigation-rule>
-		<display-name>RegisterBean.xhtml</display-name>
+		<display-name>Register.xhtml</display-name>
 		<from-view-id>/Register.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>registrado</from-outcome>
+			<from-outcome>iratrasReg</from-outcome>
 			<to-view-id>/Main.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>

@@ -2,27 +2,52 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-<!--  <meta charset="ISO-8859-1">-->
-    <title>Registration Page</title>
-    <h:outputStylesheet library="css" name="style.css" />
+	<!--  <meta charset="ISO-8859-1">-->
+	<title>Registration Page</title>
+	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 
-<body>
-    <h:form>
-        <h:panelGrid columns="2">
-            <h:outputLabel for="username">Username:</h:outputLabel>
-            <h:inputText id="username" value="#{registerBean.username}" />
+<h:body>
+	<h1>REGISTER</h1>
+	<div id="dReg">
+		<h:form id="miForm">
 
-            <h:outputLabel for="password">Password:</h:outputLabel>
-            <h:inputSecret id="password" value="#{registerBean.password}" />
+			<table>
+				<tr>
+					<td>Username:</td>
+					<td><h:inputText id="userReg" value="#{registerBean.username}">
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><h:inputSecret id="passReg" redisplay="true"
+							value="#{registerBean.password}">
+						</h:inputSecret></td>
+				</tr>
+			</table>
 
-            <h:commandButton value="Register" action="#{registerBean.register}" />
-        </h:panelGrid>
-    </h:form>
-</body>
+			<tr>
+
+				<td><h:messages id="mensajeRegisterFinal"
+						styleClass="custom-message" /></td>
+			</tr>
+
+			<p>
+				<h:commandButton id="bReg" value="REGISTER" class="custom-button"
+					style="width:180px" update="mensajeRegisterFinal">
+					<f:ajax execute="miForm" render="mensajeRegisterFinal"
+						listener="#{registerBean.register}" />
+				</h:commandButton>
+
+				<h:commandButton value="ATRAS" action="iratrasReg"
+					class="custom-button" style="margin-left:30px;" />
+			</p>
+		</h:form>
+	</div>
+</h:body>
 
 </html>

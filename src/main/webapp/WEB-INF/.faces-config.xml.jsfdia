@@ -26,8 +26,8 @@
   SHAPE="288,465,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#Register.xhtml:0" NAME="item"
    PATH="/Register.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="registrado::#Main.xhtml" NAME="output"
-    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="registrado" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="iratrasReg::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="iratrasReg" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#QueryQuestion.xhtml"

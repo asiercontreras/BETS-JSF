@@ -15,7 +15,6 @@ public class LoginBean {
 	private String usuario;
 	private String password;
 	private BLFacadeHibernateInterface bl;
-	//private User userLogin;
 	
 	
 	public LoginBean() {
@@ -38,14 +37,6 @@ public class LoginBean {
 		this.password = password;
 	}
 	
-	/*public User getUserLogin() {
-		return this.userLogin;
-	}
-	
-	public void setUserLogin(User ul) {
-		this.userLogin = ul;
-	}*/
-	
 	public String checkUserPass() {
 		boolean isLogin = bl.checkUserPass(usuario, password);
 		if(isLogin) {
@@ -64,9 +55,9 @@ public class LoginBean {
 	
 	public void listener(AjaxBehaviorEvent evento) {
 		System.out.println(
-				"Usuario:" + usuario + " -> " + password);
+				"Login user:" + usuario + " -> " + password);
 
 		FacesContext.getCurrentInstance().addMessage("mensajeLoginFinal", new FacesMessage(
-				"Usuario:" + usuario + " -> " + password));
+				"Login user:" + usuario + " -> " + password));
 	}
 }
