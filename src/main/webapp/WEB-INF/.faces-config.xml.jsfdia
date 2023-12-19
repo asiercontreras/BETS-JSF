@@ -44,6 +44,11 @@
    <PROCESS-ITEM-OUTPUT ID="noInciado::#Login.xhtml" NAME="output"
     PATH="/Login.xhtml" TARGET="rules:#Login.xhtml" TITLE="noInciado" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#Login.xhtml:2" NAME="item2"
+   PATH="/Login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="iratrasLog::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="iratrasLog" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#CreateQuestion.xhtml"
   PATH="/CreateQuestion.xhtml" SHAPE="288,33,0,0" model-entity="JSFProcessGroup">

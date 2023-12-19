@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<!--  <meta charset="ISO-8859-1">-->
 
@@ -15,24 +16,33 @@
 <h:body>
 	<h1>LOGIN</h1>
 
-	<h:form id="miForm">
-		<table>
+	<div id="dlog">
+		<h:form id="miForm">
+			<table>
+				<tr>
+					<td>Usuario:</td>
+					<td><h:inputText id="user" value="#{dLogin.usuario}"></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><h:inputSecret id="pass" redisplay="true"
+							value="#{dLogin.password}">
+						</h:inputSecret></td>
+				</tr>
+			</table>
 			<tr>
-				<td>Usuario:</td>
-				<td><h:inputText id="user" value="#{dLogin.usuario}"></h:inputText></td>
+				<td><h:messages id="mensajeLoginFinal"
+						styleClass="custom-messages" /></td>
 			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><h:inputSecret id="pass" redisplay="true"
-						value="#{dLogin.password}">
-					</h:inputSecret></td>
-			</tr>
-		</table>
-		<p>
-			<h:commandButton id="bLogin" value="Login"
-				action="#{dLogin.checkUserPass}"
-				class="custom-button" style="width:180px"/>
-		</p>
-	</h:form>
+			<p>
+				<h:commandButton id="bLogin" value="LOGIN" class="custom-button"
+					style="width:180px" update="mensajeLoginFinal"
+					action="#{dLogin.checkUserPass}">
+				</h:commandButton>
+				<h:commandButton value="ATRAS" action="iratrasLog"
+							class="custom-button" style="margin-left:30px;" />
+			</p>
+		</h:form>
+	</div>
 </h:body>
 </html>

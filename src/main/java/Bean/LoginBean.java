@@ -15,7 +15,7 @@ public class LoginBean {
 	private String usuario;
 	private String password;
 	private BLFacadeHibernateInterface bl;
-	private User userLogin;
+	//private User userLogin;
 	
 	
 	public LoginBean() {
@@ -38,27 +38,35 @@ public class LoginBean {
 		this.password = password;
 	}
 	
-	public User getUserLogin() {
+	/*public User getUserLogin() {
 		return this.userLogin;
 	}
 	
 	public void setUserLogin(User ul) {
 		this.userLogin = ul;
-	}
+	}*/
 	
 	public String checkUserPass() {
 		boolean isLogin = bl.checkUserPass(usuario, password);
 		if(isLogin) {
-			System.out.println("Iniciado sesion: " + userLogin.toString());
+			System.out.println("Iniciado sesion: " + usuario + " con contrasenna: " + password);
+			/*FacesContext.getCurrentInstance().addMessage("mensajeLoginFinal",
+					new FacesMessage("Sesion iniciada."));*/
 			return "iniciado";
 		}
 		else {
 			System.out.println("No existe este usuario en la BD o la contrasenna es erronea.");
-			/*FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",
-							"No existe este usuario: " + this.usuario + " en la BD o la contrasenna "
-							+ this.password + " es erronea."));*/
+			FacesContext.getCurrentInstance().addMessage("mensajeLoginFinal",
+					new FacesMessage("No existe este usuario en la BD o la contrasenna es erronea."));
 			return "noInciado";
 		}
+	}
+	
+	public void listener(AjaxBehaviorEvent evento) {
+		System.out.println(
+				"Usuario:" + usuario + " -> " + password);
+
+		FacesContext.getCurrentInstance().addMessage("mensajeLoginFinal", new FacesMessage(
+				"Usuario:" + usuario + " -> " + password));
 	}
 }
