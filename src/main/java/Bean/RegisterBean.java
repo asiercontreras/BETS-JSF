@@ -51,7 +51,11 @@ public class RegisterBean {
     public String register() {
     	if (bl.insertUser(username, password)) {
     		System.out.println("Se ha insertado " + this.getUsername() + " correctamente." + " Su pass es: " + this.getPassword());
-    	} else System.out.println("Incorrecto");
+    		//return "registrado";
+    	} else{
+    		System.out.println("Incorrecto");
+    		//return "noRegistrado";
+    	}
     	
     	
     	return "success";

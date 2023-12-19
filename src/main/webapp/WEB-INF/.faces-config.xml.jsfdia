@@ -23,11 +23,28 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Register.xhtml" PATH="/Register.xhtml"
-  SHAPE="288,465,0,0" model-entity="JSFProcessGroup"/>
+  SHAPE="288,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Register.xhtml:0" NAME="item"
+   PATH="/Register.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="registrado::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="registrado" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#QueryQuestion.xhtml"
   PATH="/QueryQuestion.xhtml" SHAPE="288,241,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#Login.xhtml" PATH="/Login.xhtml"
-  SHAPE="288,353,0,0" model-entity="JSFProcessGroup"/>
+  SHAPE="288,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Login.xhtml:0" NAME="item"
+   PATH="/Login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="iniciado::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="iniciado" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#Login.xhtml:1" NAME="item1"
+   PATH="/Login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="noInciado::#Login.xhtml" NAME="output"
+    PATH="/Login.xhtml" TARGET="rules:#Login.xhtml" TITLE="noInciado" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#CreateQuestion.xhtml"
   PATH="/CreateQuestion.xhtml" SHAPE="288,33,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#CreateQuestion.xhtml:0" NAME="item"

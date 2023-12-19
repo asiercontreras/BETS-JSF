@@ -2,17 +2,37 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-<!--  <meta charset="ISO-8859-1">-->
+	<!--  <meta charset="ISO-8859-1">-->
 
-<title>login</title>
-<h:outputStylesheet library="css" name="style.css" />
+	<title>login</title>
+	<h:outputStylesheet library="css" name="style.css" />
 
 </h:head>
 <h:body>
-<h1>LOGIN</h1>
+	<h1>LOGIN</h1>
+
+	<h:form id="miForm">
+		<table>
+			<tr>
+				<td>Usuario:</td>
+				<td><h:inputText id="user" value="#{dLogin.usuario}"></h:inputText></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><h:inputSecret id="pass" redisplay="true"
+						value="#{dLogin.password}">
+					</h:inputSecret></td>
+			</tr>
+		</table>
+		<p>
+			<h:commandButton id="bLogin" value="Login"
+				action="#{dLogin.checkUserPass}"
+				class="custom-button" style="width:180px"/>
+		</p>
+	</h:form>
 </h:body>
 </html>

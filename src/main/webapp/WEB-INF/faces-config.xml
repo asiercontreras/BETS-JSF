@@ -20,6 +20,11 @@
 		<managed-bean-class>Bean.RegisterBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dLogin</managed-bean-name>
+		<managed-bean-class>Bean.LoginBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>Main.xhtml</display-name>
 		<from-view-id>/Main.xhtml</from-view-id>
@@ -57,6 +62,32 @@
 		<from-view-id>/CreateQuestion.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>iratras</from-outcome>
+			<to-view-id>/Main.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>Login.xhtml</display-name>
+		<from-view-id>/Login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>iniciado</from-outcome>
+			<to-view-id>/Main.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Login.xhtml</display-name>
+		<from-view-id>/Login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>noInciado</from-outcome>
+			<to-view-id>/Login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>RegisterBean.xhtml</display-name>
+		<from-view-id>/Register.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>registrado</from-outcome>
 			<to-view-id>/Main.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
