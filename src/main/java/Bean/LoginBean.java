@@ -40,7 +40,7 @@ public class LoginBean {
 	public String checkUserPass() {
 		boolean isLogin = bl.checkUserPass(usuario, password);
 		if(isLogin) {
-			System.out.println("Iniciado sesion: " + usuario + " con contrasenna: " + password);
+			System.out.println("Iniciado sesión: " + usuario + " con contraseña: " + password);
 			/*FacesContext.getCurrentInstance().addMessage("mensajeLoginFinal",
 					new FacesMessage("Sesion iniciada."));*/
 			return "iniciado";
@@ -48,7 +48,7 @@ public class LoginBean {
 		else {
 			System.out.println("No existe este usuario en la BD o la contrasenna es erronea.");
 			FacesContext.getCurrentInstance().addMessage("mensajeLoginFinal",
-					new FacesMessage("No existe este usuario en la BD o la contrasenna es erronea."));
+					new FacesMessage("No existe este usuario en la BD o la contraseña es errónea."));
 			return "noInciado";
 		}
 	}

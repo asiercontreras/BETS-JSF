@@ -52,15 +52,21 @@ public class RegisterBean {
     }
 
     public void register() {
-    	if (bl.insertUser(username, password)) {
-    		System.out.println("Se ha insertado " + this.getUsername() + " correctamente." + " Su pass es: " + this.getPassword());
+    	if(campoVacio(username, password) && bl.insertUser(username, password)) {
+    		System.out.println("CORRECTO: Se ha insertado " + this.getUsername() + " correctamente." + " Su pass es: " + this.getPassword());
     		FacesContext.getCurrentInstance().addMessage("mensajeRegisterFinal",
-    				new FacesMessage("Registrado."));
+    				new FacesMessage("CORRECTO: Registrado correctamente el usuario " + username + "."));
     		//return "registrado";
-    	} else{
-    		System.out.println("Incorrecto");
+    	}
+    	else if (!campoVacio(username, password)) {
+    		System.out.println("INCORRECTO: No se admiten usuarios ni contraseñas vacías.");
     		FacesContext.getCurrentInstance().addMessage("mensajeRegisterFinal",
-    				new FacesMessage("El nombre de usuario con el que te quieres registrar ya existe."));
+    				new FacesMessage("INCORRECTO: No se admiten usuarios ni contraseñas vacías."));
+    		//return "noRegistrado";
+    	} else{
+    		System.out.println("INCORRECTO: El nombre de usuario con el que te quieres registrar ya existe.");
+    		FacesContext.getCurrentInstance().addMessage("mensajeRegisterFinal",
+    				new FacesMessage("INCORRECTO: El nombre de usuario con el que te quieres registrar ya existe."));
     		//return "noRegistrado";
     	}
     	//return "success";
@@ -73,4 +79,8 @@ public class RegisterBean {
 		FacesContext.getCurrentInstance().addMessage("mensajeRegisterFinal", new FacesMessage(
 				"Reister user:" + username + " -> " + password));
 	}
+    
+    public boolean campoVacio(String user, String password) {
+    	return user != "" && password != "";
+    }
 }
