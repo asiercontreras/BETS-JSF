@@ -16,16 +16,18 @@
 	<div id="dReg">
 		<h:form id="miForm">
 
-			<table>
+			<table style="width:100%;">
 				<tr>
 					<td>Username:</td>
-					<td><h:inputText id="userReg" value="#{registerBean.username}">
+					<td><h:inputText id="userReg" value="#{registerBean.username}"
+					style="width:99%;">
 						</h:inputText></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
 					<td><h:inputSecret id="passReg" redisplay="true"
-							value="#{registerBean.password}">
+							value="#{registerBean.password}"
+							style="width:99%;">
 						</h:inputSecret></td>
 				</tr>
 			</table>

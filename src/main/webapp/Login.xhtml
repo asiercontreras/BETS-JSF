@@ -15,17 +15,20 @@
 <h:body>
 	<h1>LOGIN</h1>
 
-	<div id="dlog">
+	<div id="dLog">
 		<h:form id="miForm">
-			<table>
+			<table style="width:100%;">
 				<tr>
 					<td>Username:</td>
-					<td><h:inputText id="userLog" value="#{loginBean.usuario}"></h:inputText></td>
+					<td><h:inputText id="userLog" value="#{loginBean.usuario}"
+					style="width:99%;">
+					</h:inputText></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
 					<td><h:inputSecret id="passLog" redisplay="true"
-							value="#{loginBean.password}">
+							value="#{loginBean.password}"
+							style="width:99%;">
 						</h:inputSecret></td>
 				</tr>
 			</table>

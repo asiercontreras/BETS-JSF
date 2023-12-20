@@ -31,6 +31,30 @@
 	margin-bottom: 40px;
 }
 
+#dReg{
+			padding: 40px;
+	width: 55%;
+	left: 20%;
+	top: 20%;
+	background-color: #dbdbdb;
+	position: absolute;
+	border-radius: 5px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+#dLog{
+			padding: 40px;
+	width: 55%;
+	left: 20%;
+	top: 20%;
+	background-color: #dbdbdb;
+	position: absolute;
+	border-radius: 5px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
 body {
 	background-color: #cdd4cf;
 	font-family: 'Arial', sans-serif;
@@ -149,4 +173,5 @@ button:hover {
     /* Estilos generales para mensajes */ 
     color: black;
 }
+
 
