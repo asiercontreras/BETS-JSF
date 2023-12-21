@@ -5,6 +5,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://Java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
+    
+    <!-- BEANS -->
 	<managed-bean>
 		<managed-bean-name>createQuestion</managed-bean-name>
 		<managed-bean-class>Bean.CreateQuestionBean</managed-bean-class>
@@ -25,6 +27,29 @@
 		<managed-bean-class>Bean.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	
+	
+	<!-- NAVEGACION -->
+		<navigation-rule>
+		<display-name>MainPublico.xhtml</display-name>
+		<from-view-id>/MainPublico.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/Login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+		<navigation-rule>
+		<display-name>MainPublico.xhtml</display-name>
+		<from-view-id>/MainPublico.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>register</from-outcome>
+			<to-view-id>/Register.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	
 	<navigation-rule>
 		<display-name>Main.xhtml</display-name>
 		<from-view-id>/Main.xhtml</from-view-id>
@@ -41,7 +66,7 @@
 			<to-view-id>/QueryQuestion.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	<navigation-rule>
+	<!--  <navigation-rule>
 		<display-name>Main.xhtml</display-name>
 		<from-view-id>/Main.xhtml</from-view-id>
 		<navigation-case>
@@ -57,6 +82,7 @@
 			<to-view-id>/Register.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	-->
 	<navigation-rule>
 		<display-name>CreateQuestion.xhtml</display-name>
 		<from-view-id>/CreateQuestion.xhtml</from-view-id>
@@ -88,7 +114,7 @@
 		<from-view-id>/Login.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>iratrasLog</from-outcome>
-			<to-view-id>/Main.xhtml</to-view-id>
+			<to-view-id>/MainPublico.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
@@ -97,7 +123,7 @@
 		<from-view-id>/Register.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>iratrasReg</from-outcome>
-			<to-view-id>/Main.xhtml</to-view-id>
+			<to-view-id>/MainPublico.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

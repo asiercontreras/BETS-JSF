@@ -12,22 +12,14 @@
     NAME="output" PATH="/QueryQuestion.xhtml"
     TARGET="rules:#QueryQuestion.xhtml" TITLE="queryQuestion" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
-  <PROCESS-ITEM ID="rules:#Main.xhtml:2" NAME="item2" PATH="/Main.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="login::#Login.xhtml" NAME="output"
-    PATH="/Login.xhtml" TARGET="rules:#Login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
-  <PROCESS-ITEM ID="rules:#Main.xhtml:3" NAME="item3" PATH="/Main.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="register::#Register.xhtml" NAME="output"
-    PATH="/Register.xhtml" TARGET="rules:#Register.xhtml"
-    TITLE="register" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#Register.xhtml" PATH="/Register.xhtml"
   SHAPE="288,465,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#Register.xhtml:0" NAME="item"
    PATH="/Register.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="iratrasReg::#Main.xhtml" NAME="output"
-    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="iratrasReg" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="iratrasReg::#MainPublico.xhtml"
+    NAME="output" PATH="/MainPublico.xhtml"
+    TARGET="rules:#MainPublico.xhtml" TITLE="iratrasReg" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#QueryQuestion.xhtml"
@@ -46,8 +38,9 @@
   </PROCESS-ITEM>
   <PROCESS-ITEM ID="rules:#Login.xhtml:2" NAME="item2"
    PATH="/Login.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="iratrasLog::#Main.xhtml" NAME="output"
-    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="iratrasLog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="iratrasLog::#MainPublico.xhtml"
+    NAME="output" PATH="/MainPublico.xhtml"
+    TARGET="rules:#MainPublico.xhtml" TITLE="iratrasLog" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#CreateQuestion.xhtml"
@@ -56,6 +49,20 @@
    PATH="/CreateQuestion.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="iratras::#Main.xhtml" NAME="output"
     PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="iratras" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#MainPublico.xhtml" PATH="/MainPublico.xhtml"
+  SHAPE="80,625,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#MainPublico.xhtml:0" NAME="item"
+   PATH="/MainPublico.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="login::#Login.xhtml" NAME="output"
+    PATH="/Login.xhtml" TARGET="rules:#Login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#MainPublico.xhtml:1" NAME="item1"
+   PATH="/MainPublico.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="register::#Register.xhtml" NAME="output"
+    PATH="/Register.xhtml" TARGET="rules:#Register.xhtml"
+    TITLE="register" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

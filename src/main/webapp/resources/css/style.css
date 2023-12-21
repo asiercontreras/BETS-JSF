@@ -13,17 +13,18 @@
 #querydiv {
 	padding: 40px;
 	width: 80%;
-	left: 5%;
+	left: 7%;
 	top: 20%;
 	background-color: #dbdbdb;
 	position: absolute;
 	border-radius: 5px;
 	margin-bottom: 40px;
 }
-#creatediv{
-		padding: 40px;
+
+#creatediv {
+	padding: 40px;
 	width: 65%;
-	left: 15%;
+	left: 14%;
 	top: 20%;
 	background-color: #dbdbdb;
 	position: absolute;
@@ -31,22 +32,10 @@
 	margin-bottom: 40px;
 }
 
-#dReg{
-			padding: 40px;
+#dReg, #dLog {
+	padding: 40px;
 	width: 55%;
-	left: 20%;
-	top: 20%;
-	background-color: #dbdbdb;
-	position: absolute;
-	border-radius: 5px;
-	margin-bottom: 40px;
-	text-align: center;
-}
-
-#dLog{
-			padding: 40px;
-	width: 55%;
-	left: 20%;
+	left: 19%;
 	top: 20%;
 	background-color: #dbdbdb;
 	position: absolute;
@@ -167,11 +156,8 @@ button:hover {
 	background-color: #475b61;
 }
 
-
 /*colores messages*/
 .custom-messages {
-    /* Estilos generales para mensajes */ 
-    color: black;
+	/* Estilos generales para mensajes */
+	color: black;
 }
-
-

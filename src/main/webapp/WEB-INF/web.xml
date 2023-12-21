@@ -3,7 +3,7 @@
   <display-name>BetsJSF</display-name>
     <welcome-file-list>
   
-  <welcome-file>faces/Main.xhtml</welcome-file>
+  <welcome-file>faces/MainPublico.xhtml</welcome-file>
     </welcome-file-list>
   
   <servlet>
