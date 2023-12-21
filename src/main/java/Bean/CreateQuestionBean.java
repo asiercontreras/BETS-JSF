@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Vector;
+
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,15 +14,13 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
 
-import Bean.*;
 import dominio.*;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 import businessLogic.BLFacadeHibernateInterface;
 import businessLogic.BLFacadeHibernate;
 //import resources.*;
-import configuration.*;
-import dataAccess.DataAccessHibernate;
+
 
 @ManagedBean(name = "createQuestion")
 @RequestScoped
@@ -33,7 +31,7 @@ public class CreateQuestionBean {
 	private Event event;
 	private Question question;
 	private float minBet;
-	private Vector<Event> events;
+	private List<Event> events;
 	private BLFacadeHibernateInterface bl;
 	private String stringQuestion;
 
@@ -141,11 +139,11 @@ public class CreateQuestionBean {
 
 	}
 
-	public Vector<Event> getEvents() {
+	public List<Event> getEvents() {
 		return this.events;
 	}
 
-	public void setEvents(Vector<Event> eventos) {
+	public void setEvents(List<Event> eventos) {
 		this.events = eventos;
 	}
 

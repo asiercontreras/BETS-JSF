@@ -1,21 +1,15 @@
 package dataAccess;
 
-import java.io.File;
 //hello
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.Vector;
 
-import javax.imageio.spi.ServiceRegistry;
+import java.util.List;
+
+
 
 import org.hibernate.*;
 
-import configuration.ConfigXML;
 import configuration.UtilDate;
 import dominio.*;
 import exceptions.QuestionAlreadyExist;
@@ -168,7 +162,7 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 	 * @param date in which events are retrieved
 	 * @return collection of events
 	 */
-	public Vector<Event> getEvents(Date date) {
+	public List<Event> getEvents(Date date) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
@@ -176,17 +170,13 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 
 		Query query = session.createQuery("FROM Event WHERE eventDate = :date");
 		query.setParameter("date", date);
-		List<Event> events = query.list();
+		List<Event> listEvents = query.list(); // Suponiendo que query.list() devuelve una lista
+		//Set<Event> events = new HashSet<Event>(listEvents); // Convertir la lista a un Set utilizando HashSet
+
 
 		session.getTransaction().commit();
 
-		Vector<Event> res = new Vector<Event>();
-
-		for (Event ev : events) {
-			System.out.println(ev.toString());
-			res.add(ev);
-		}
-		return res;
+		return listEvents;
 	}
 
 	public boolean existQuestion(Event event, String question) {
@@ -207,22 +197,15 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 	 * Returns a vector with the questions
 	 */
 	@Override
-	public Vector<Question> getQuestions(Event e) {
+	public List<Question> getQuestions(Event e) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		System.out.println(">> DataAccess: getQuestions");
 		Query query = session.createQuery("FROM Question WHERE event = :e");
 		query.setParameter("e", e);
-		List<Question> questions = query.list();
+		List<Question> listQuestions = query.list(); // Suponiendo que query.list() devuelve una lista
 		session.getTransaction().commit();
-
-		Vector<Question> res = new Vector<Question>();
-
-		for (Question q : questions) {
-			System.out.println(q.toString());
-			res.add(q);
-		}
-		return res;
+		return listQuestions;
 	}
 	
 	/**

@@ -1,7 +1,8 @@
 package dataAccess;
 
 import java.util.Date;
-import java.util.Vector;
+import java.util.List;
+
 
 import dominio.*;
 import exceptions.QuestionAlreadyExist;
@@ -31,7 +32,7 @@ public interface DataAccessHibernateInterface {
 	 * @param date in which events are retrieved
 	 * @return collection of events
 	 */
-	Vector<Event> getEvents(Date date);
+	List<Event> getEvents(Date date);
 
 	
 
@@ -48,7 +49,7 @@ public interface DataAccessHibernateInterface {
 	
 	
 	
-	Vector<Question> getQuestions(Event e);
+	List<Question> getQuestions(Event e);
 	
 	
 	public boolean insertUser(String user, String pass, String salt);

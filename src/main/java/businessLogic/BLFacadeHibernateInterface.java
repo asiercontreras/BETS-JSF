@@ -1,7 +1,7 @@
 package businessLogic;
 
-import java.util.Vector;
 import java.util.Date;
+import java.util.List;
 
 //import domain.Booking;
 import dominio.*;
@@ -33,7 +33,7 @@ public interface BLFacadeHibernateInterface  {
 	 * @param date in which events are retrieved
 	 * @return collection of events
 	 */
-	public Vector<Event> getEvents(Date date);
+	public List<Event> getEvents(Date date);
 	
 
 	
@@ -43,7 +43,7 @@ public interface BLFacadeHibernateInterface  {
 	 */	
 	
 	
-	public Vector<Question> getQuestions(Event event);
+	public List<Question> getQuestions(Event event);
 	
 	/**
 	 * Returns the questions associated to an Event

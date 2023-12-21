@@ -14,9 +14,9 @@ import dominio.*;
 public class QueryQuestionBean {
 	private Date date;
 	private Event event;
-	private Vector<Event> events;
+	private List<Event> events;
 	private Question question;
-	private Vector<Question> questions;
+	private List<Question> questions;
 	private BLFacadeHibernateInterface bl;
 
 	public QueryQuestionBean() {
@@ -54,15 +54,15 @@ public class QueryQuestionBean {
 	/**
 	 * @return the events
 	 */
-	public Vector<Event> getEvents() {
+	public List<Event> getEvents() {
 		return events;
 	}
 
 	/**
-	 * @param vector the events to set
+	 * @param  the events to set
 	 */
-	public void setEvents(Vector<Event> vector) {
-		this.events = vector;
+	public void setEvents(List<Event> set) {
+		this.events =  set;
 	}
 
 	/**
@@ -82,14 +82,14 @@ public class QueryQuestionBean {
 	/**
 	 * @return the questions
 	 */
-	public Vector<Question> getQuestions() {
+	public List<Question> getQuestions() {
 		return questions;
 	}
 
 	/**
 	 * @param vector the questions to set
 	 */
-	public void setQuestions(Vector<Question> vector) {
+	public void setQuestions(List<Question> vector) {
 		this.questions = vector;
 	}
 
@@ -100,10 +100,10 @@ public class QueryQuestionBean {
 		String formattedDate = sdf.format(selectedDate);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + formattedDate));
 		
-		this.setEvents(bl.getEvents((Date) e.getObject()));
+		this.setEvents((List<Event>) bl.getEvents((Date) e.getObject()));
 	}
 
 	public void showQuestions() {
-		this.setQuestions(bl.getQuestions(event));
+		this.setQuestions((List<Question>) bl.getQuestions(event));
 	}
 }
