@@ -161,3 +161,10 @@ button:hover {
 	/* Estilos generales para mensajes */
 	color: black;
 }
+a{
+	color: black;
+	text-decoration: none;
+}
+a:hover{
+	color: gray;
+}
