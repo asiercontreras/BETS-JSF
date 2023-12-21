@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -10,7 +12,11 @@ public class User {
 	@Id
 	private String username;
 	private String password;
+	private String nombre;
+	private String apellido;
 	private String salt;
+	private Date fechanac;
+	
 	
 	public User() {
 	}
@@ -19,6 +25,17 @@ public class User {
 		this.username = user;
 		this.password = pass;
 		this.salt = salt;
+	}
+	
+
+	public User(String username, String password,String salt, String nombre, String apellido,  Date fechanac) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.salt = salt;
+		this.fechanac = fechanac;
 	}
 
 	public String getUsername() {
@@ -43,5 +60,29 @@ public class User {
 	
 	public void setSalt(String salt) {
 		this.salt = salt;
+	}
+
+	public Date getFechanac() {
+		return fechanac;
+	}
+
+	public void setFechanac(Date fechanac) {
+		this.fechanac = fechanac;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }

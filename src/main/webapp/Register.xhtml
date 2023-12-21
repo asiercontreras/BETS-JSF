@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<!--  <meta charset="ISO-8859-1">-->
 	<title>Registration Page</title>
@@ -12,23 +14,47 @@
 </h:head>
 
 <h:body>
-	<h1>REGISTER</h1>
+	<h1>REGISTRAR USUARIO</h1>
 	<div id="dReg">
 		<h:form id="miForm">
 
-			<table style="width:100%;">
+			<table id="tablaregister" style="width: 100%;">
 				<tr>
 					<td>Username:</td>
 					<td><h:inputText id="userReg" value="#{registerBean.username}"
-					style="width:99%;">
+							style="width:99%;">
 						</h:inputText></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
 					<td><h:inputSecret id="passReg" redisplay="true"
-							value="#{registerBean.password}"
-							style="width:99%;">
+							value="#{registerBean.password}" style="width:99%;">
 						</h:inputSecret></td>
+				</tr>
+				<tr>
+					<td>Nombre:</td>
+					<td><h:inputText id="nombreReg" value="#{registerBean.nombre}"
+							style="width:99%;">
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td>Apellido:</td>
+					<td><h:inputText id="apellidoReg"
+							value="#{registerBean.apellido}" style="width:99%;">
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td>Fecha de Nacimiento:</td>
+					<td>
+						<!--  <p:calendar id="fechanac" value="#{registerBean.fechanac}"
+							navigator="false" mode="inline">
+						</p:calendar>--><p:calendar id="german"
+                value="#{registerBean.fechanac}"
+                locale="es"
+                navigator="true"
+                yearRange="2000:#{registerBean.maxYear}" />
+    
+					</td>
 				</tr>
 			</table>
 

@@ -84,7 +84,7 @@ public final class BLFacadeHibernate implements BLFacadeHibernateInterface {
 		return dbManager.getQuestions(event);
 	}
 
-	public boolean insertUser(String user, String pass) {
+	public boolean insertUser(String user, String pass, String nombre, String apellido, Date date) {
 
 		// Un salt es pequeño valor aleatorio
 		String salt = BCrypt.gensalt();
@@ -103,7 +103,7 @@ public final class BLFacadeHibernate implements BLFacadeHibernateInterface {
 		 * contraseñas
 		 */
 
-		return dbManager.insertUser(user, hashedPassword, salt);
+		return dbManager.insertUser(user, hashedPassword, salt, nombre, apellido, date);
 
 	}
 

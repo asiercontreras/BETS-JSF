@@ -6,8 +6,6 @@ import java.util.Date;
 
 import java.util.List;
 
-
-
 import org.hibernate.*;
 
 import configuration.UtilDate;
@@ -141,9 +139,9 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 		query.setParameter("number", event.getEventNumber());
 		Event myEvent = (Event) query.uniqueResult();
 		if (myEvent.DoesQuestionExists(question)) {
-			
+
 			System.out.println("Ya existe una pregunta con ese nombre");
-			
+
 			throw new QuestionAlreadyExist("Ya existe una pregunta con ese nombre");
 		}
 
@@ -171,8 +169,8 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 		Query query = session.createQuery("FROM Event WHERE eventDate = :date");
 		query.setParameter("date", date);
 		List<Event> listEvents = query.list(); // Suponiendo que query.list() devuelve una lista
-		//Set<Event> events = new HashSet<Event>(listEvents); // Convertir la lista a un Set utilizando HashSet
-
+		// Set<Event> events = new HashSet<Event>(listEvents); // Convertir la lista a
+		// un Set utilizando HashSet
 
 		session.getTransaction().commit();
 
@@ -207,42 +205,42 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 		session.getTransaction().commit();
 		return listQuestions;
 	}
-	
+
 	/**
-	 * Inserta un usuario nuevo en la base de datos. Método creado para register. 
+	 * Inserta un usuario nuevo en la base de datos. Método creado para register.
+	 * 
 	 * @return
 	 */
-	public boolean insertUser(String user, String pass, String salt) {
+	public boolean insertUser(String user, String pass, String salt, String nombre, String apellido, Date date) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
-			
-			User myUser = new User(user, pass, salt);
+
+			User myUser = new User(user, pass, salt, nombre, apellido, date);
 			session.save(myUser);
-			
+
 			session.getTransaction().commit();
 			return true;
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			if (e instanceof org.hibernate.NonUniqueObjectException) {
-		        System.out.println("Se ha intentado insertar un usuario con el mismo username.");
-		    }
+				System.out.println("Se ha intentado insertar un usuario con el mismo username.");
+			}
 			return false;
 		}
-		
+
 	}
-	
+
 	public User getUser(String user) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
-			
+
 			Query query = session.createQuery("FROM User WHERE username = :usern");
 			query.setParameter("usern", user);
 			User myUser = (User) query.uniqueResult();
-			
+
 			return myUser;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}

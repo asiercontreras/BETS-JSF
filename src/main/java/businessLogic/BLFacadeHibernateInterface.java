@@ -50,7 +50,7 @@ public interface BLFacadeHibernateInterface  {
 	 */	
 	
 	
-	public boolean insertUser(String user, String pass);
+	public boolean insertUser(String user, String pass,String nombre, String apellido, Date date);
 	
 	public boolean checkUserPass(String user, String pass);
 }

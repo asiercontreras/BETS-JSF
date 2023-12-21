@@ -52,7 +52,7 @@ public interface DataAccessHibernateInterface {
 	List<Question> getQuestions(Event e);
 	
 	
-	public boolean insertUser(String user, String pass, String salt);
+	public boolean insertUser(String user, String pass, String salt,String nombre, String apellido, Date date);
 	
 	public User getUser(String user);
 	
