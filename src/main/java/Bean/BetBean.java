@@ -20,7 +20,6 @@ import dominio.*;
 import exceptions.BetAlreadyExist;
 
 public class BetBean {
-	private String description;
 	private float minBet;
 	private Question question;
 	private List<Question> questions;
@@ -48,13 +47,6 @@ public class BetBean {
 		this.question = question;
 	}
 
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	public float getMinBet() {
 		return this.minBet;
@@ -113,21 +105,14 @@ public class BetBean {
 		if (question == null) {
 			FacesContext.getCurrentInstance().addMessage("mensajeFinalBet",
 					new FacesMessage("No hay ninguna pregunta seleccionada"));
-		} else if (this.description == "") {
-			FacesContext.getCurrentInstance().addMessage("mensajeFinalBet",
-					new FacesMessage("No puede haber una descripción vacía"));
-		} else if (minBet < 0) {
-			FacesContext.getCurrentInstance().addMessage("mensajeFinalBet",
-					new FacesMessage("No puede haber apuesta mínima negativa"));
 		} else if (minBet < question.getBetMinimum()) {
 			FacesContext.getCurrentInstance().addMessage("mensajeFinalBet",
-					new FacesMessage("No puede haber apuesta mínima negativa"));
+					new FacesMessage("La apuesta no puede ser menor a "+question.getBetMinimum()));
 		} else {
 			try {
 				bet = bl.createBet(question, opcionElegida, minBet);
 				FacesContext.getCurrentInstance().addMessage("mensajeFinalBet",
 						new FacesMessage("Apuesta añadida: " + bet.toString() + "."));
-				this.description = "";
 				this.minBet = 0;
 			} catch (BetAlreadyExist bae) {
 				FacesContext.getCurrentInstance().addMessage("mensajeFinalBet",
@@ -138,10 +123,10 @@ public class BetBean {
 
 	public void listener(AjaxBehaviorEvent evento) {
 		System.out
-				.println("Apuesta:" + event.getDescription() + " -> " + question.getQuestion() + " -> " + description);
+				.println("Apuesta:" + event.getDescription() + " -> " + question.getQuestion() + " -> " + opcionElegida);
 
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-				"Apuesta:" + event.getDescription() + " -> " + question.getQuestion() + " -> " + description));
+				"Apuesta:" + event.getDescription() + " -> " + question.getQuestion() + " -> " + opcionElegida));
 	}
 
 	public void onDateSelect(SelectEvent e) {
@@ -150,18 +135,7 @@ public class BetBean {
 		SimpleDateFormat sdf = new SimpleDateFormat("d 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
 		String formattedDate = sdf.format(selectedDate);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida: " + formattedDate));
-		/*
-		 * // System.out.println(bl.getEvents((Date) e.getObject()));
-		 * System.out.println("-----------------------------------------------------");
-		 * System.out.println("Los Eventos ANTES:" + this.getEvent());
-		 */
-
 		this.events = bl.getEvents((Date) e.getObject());
-
-		/*
-		 * System.out.println("-----------------------------------------------------");
-		 * System.out.println("Los Eventos DESPUES:" + this.getEvents());
-		 */
 
 	}
 

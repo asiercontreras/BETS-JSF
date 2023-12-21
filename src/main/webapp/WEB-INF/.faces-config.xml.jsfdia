@@ -65,4 +65,11 @@
     TITLE="register" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Bet.xhtml" PATH="/Bet.xhtml"
+  SHAPE="64,161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Bet.xhtml:0" NAME="item" PATH="/Bet.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="iratrasBets::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="iratrasBets" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

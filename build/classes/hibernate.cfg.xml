@@ -15,7 +15,7 @@
   <mapping class="dominio.Event"/>
   <mapping class="dominio.Question"/>
   <mapping class="dominio.User"/>
-    <mapping class="dominio.Bet"/>
+  <mapping class="dominio.Bet"/>
   
  </session-factory>
 </hibernate-configuration>
