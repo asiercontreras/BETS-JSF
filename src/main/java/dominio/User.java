@@ -1,9 +1,14 @@
 package dominio;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -16,9 +21,32 @@ public class User {
 	private String apellido;
 	private String salt;
 	private Date fechanac;
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Set<Bet> bets;
 	
 	
+	
+	/**
+	 * @return the bets
+	 */
+	public Set<Bet> getBets() {
+		return bets;
+	}
+
+	/**
+	 * @param bets the bets to set
+	 */
+	public void setBets(Set<Bet> bets) {
+		this.bets = bets;
+	}
+
 	public User() {
+	}
+	
+	public User(String user, String pass) {
+		this.username = user;
+		this.password = pass;
+		
 	}
 	
 	public User(String user, String pass, String salt) {
@@ -84,5 +112,8 @@ public class User {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public void addBet(Bet b) {
+		bets.add(b);
 	}
 }

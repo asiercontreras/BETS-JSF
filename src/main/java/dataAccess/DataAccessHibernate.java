@@ -67,7 +67,7 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 			Event ev18 = new Event(18, "Girona-Leganés", UtilDate.newDate(year, month, 28));
 			Event ev19 = new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year, month, 28));
 			Event ev20 = new Event(20, "Betis-Real Madrid", UtilDate.newDate(year, month, 28));
-
+			
 			Question q1;
 			Question q2;
 			Question q3;
@@ -247,7 +247,7 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 		}
 	}
 	
-	public Bet createBet(Question question, String descripton, float minBet) throws BetAlreadyExist {
+	public Bet createBet(Question question, String descripton, float minBet, User usr) throws BetAlreadyExist {
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -265,9 +265,14 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 		}
 		
 		Bet bet = quest.addBet(descripton, minBet);
+		bet.setUser(usr);
 		
-		//session.save(bet);
-		session.persist(quest);
+		usr.addBet(bet);
+		
+		session.save(bet);
+		session.merge(quest);
+		session.merge(usr);
+		
 		
 		session.getTransaction().commit();
 		

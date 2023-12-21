@@ -60,7 +60,7 @@ public interface DataAccessHibernateInterface {
 	
 	public User getUser(String user);
 	
-	public Bet createBet(Question question, String descripton, float minBet) throws BetAlreadyExist;
+	public Bet createBet(Question question, String descripton, float minBet, User usr) throws BetAlreadyExist;
 	
 	public boolean existBet(Question question, String descripton, float minBet);
 		

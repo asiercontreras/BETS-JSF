@@ -23,6 +23,7 @@ public final class BLFacadeHibernate implements BLFacadeHibernateInterface {
 
 	private DataAccessHibernateInterface dbManager;
 	private static BLFacadeHibernate instance;
+	private User user;
 
 	private BLFacadeHibernate(DataAccessHibernateInterface da) {
 		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
@@ -33,6 +34,8 @@ public final class BLFacadeHibernate implements BLFacadeHibernateInterface {
 		if (instance == null) {
 			DataAccessHibernateInterface db = new DataAccessHibernate();
 			instance = new BLFacadeHibernate(db);
+			instance.insertUser("admin", "admin", "admin", "admin", new Date());
+		
 		}
 		return instance;
 	}
@@ -115,11 +118,25 @@ public final class BLFacadeHibernate implements BLFacadeHibernateInterface {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		// Este método nunca decodifica la contraseña, lo unico que hace es comparar
-		return encoder.matches(myUser.getSalt() + pass, myUser.getPassword());
+
+		boolean usercorrecto = encoder.matches(myUser.getSalt() + pass, myUser.getPassword());
+		if (usercorrecto) {
+			this.setUser(myUser);
+		}
+		return usercorrecto;
 	}
-	public Bet createBet(Question question, String descripton, float minBet) throws BetAlreadyExist{
-		Bet bet = dbManager.createBet(question, descripton, minBet);
+
+	public Bet createBet(Question question, String descripton, float minBet) throws BetAlreadyExist {
+		Bet bet = dbManager.createBet(question, descripton, minBet, this.getUser());
 		return bet;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

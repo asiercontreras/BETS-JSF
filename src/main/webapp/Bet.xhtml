@@ -20,8 +20,6 @@
 			<h1>CREATE BET</h1>
 			<div id="createBetdiv">
 				<h:form id="miForm">
-
-
 					<td id="titulofecha"><h3>Fecha:</h3></td>
 					<div id="ctdiv">
 						<div id="calendarioymensaje">
@@ -37,46 +35,43 @@
 								<td><h:messages id="mensajes" style="color:blue" /></td>
 							</tr>
 						</div>
-
-						<tr>
-							<td><h3>Eventos:</h3></td>
-							<td><h:selectOneMenu id="comboboxEventos"
-									value="#{betBean.event}"
-									converter="omnifaces.SelectItemsConverter"
-									style="height:40px;width: 250px;margin-top:10px;margin-left:15px;">
-									<f:selectItems value="#{betBean.events}" />
-									<p:ajax event="change" listener="#{betBean.setEvento}"
-									update=":miForm:comboboxPreguntas"></p:ajax>
-								</h:selectOneMenu></td>
-						</tr>
-
-						<tr>
-							<td><h3>Preguntas:</h3></td>
-							<td><h:selectOneMenu id="comboboxPreguntas"
-									value="#{betBean.question}"
-									converter="omnifaces.SelectItemsConverter"
-									style="height:40px;width: 250px;margin-top:10px;margin-left:15px;">
-									<f:selectItems value="#{betBean.questions}" />
-									<p:ajax event="change" listener="#{betBean.setPregunta}"
-									update=":miForm:eligeOpcion"></p:ajax>
-								</h:selectOneMenu></td>
-						</tr>
-
+						<div id="dropdown">
+							<tr>
+								<td><h3>Eventos:</h3></td>
+								<td><h:selectOneMenu id="comboboxEventos"
+										value="#{betBean.event}"
+										converter="omnifaces.SelectItemsConverter"
+										style="height:40px;width: 250px;margin-top:10px;margin-left:15px;">
+										<f:selectItems value="#{betBean.events}" />
+										<p:ajax event="change" listener="#{betBean.setEvento}"
+											update=":miForm:comboboxPreguntas"></p:ajax>
+									</h:selectOneMenu></td>
+							</tr>
+						</div>
+						<div id="dropdown">
+							<tr>
+								<td><h3>Preguntas:</h3></td>
+								<td><h:selectOneMenu id="comboboxPreguntas"
+										value="#{betBean.question}"
+										converter="omnifaces.SelectItemsConverter"
+										style="height:40px;width: 250px;margin-top:10px;margin-left:15px;">
+										<f:selectItems value="#{betBean.questions}" />
+										<p:ajax event="change" listener="#{betBean.setPregunta}"
+											update=":miForm:eligeOpcion"></p:ajax>
+									</h:selectOneMenu></td>
+							</tr>
+						</div>
 					</div>
 					<table id="tablaBet" style="width: 100%;">
 						<tr>
 							<td>Elige vencedor:</td>
-							<td>
-								
-								<h:selectOneMenu id="eligeOpcion"
+							<td><h:selectOneMenu id="eligeOpcion"
 									value="#{betBean.opcionElegida}"
 									converter="omnifaces.SelectItemsConverter"
 									style="height:40px;width: 250px;margin-top:10px;margin-left:15px;">
 									<f:selectItems value="#{betBean.opciones}" />
 									<!-- <p:ajax event="change" listener="#{betBean.opcionElegida}"></p:ajax>  -->
-								</h:selectOneMenu>
-								
-							</td>
+								</h:selectOneMenu></td>
 						</tr>
 						<tr>
 							<td>Apuesta:</td>
@@ -92,7 +87,7 @@
 						<h:commandButton value="CREAR APUESTA" class="custom-button"
 							style="width:180px" update="mensajeFinalBet">
 							<f:ajax execute="miForm" render="mensajeFinalBet"
-							listener="#{betBean.createBet}"/>
+								listener="#{betBean.createBet}" />
 						</h:commandButton>
 						<h:commandButton value="ATRAS" action="iratrasBet"
 							class="custom-button" style="margin-left:30px;" />

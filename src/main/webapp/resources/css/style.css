@@ -10,7 +10,7 @@
 	top: 20%;
 }
 
-#querydiv {
+#querydiv,#createBetdiv {
 	padding: 40px;
 	width: 80%;
 	left: 7%;
