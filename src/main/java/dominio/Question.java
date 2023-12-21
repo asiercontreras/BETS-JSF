@@ -1,5 +1,8 @@
 package dominio;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +14,8 @@ public class Question {
 	private float betMinimum;
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Event event;
+	@OneToMany(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Set<Bet> bets = new HashSet<Bet>();
 
 	public Question() {
 	}
@@ -56,6 +61,29 @@ public class Question {
 	@Override
 	public String toString() {
 		return question;
+	}
+	
+	public Set<Bet> getBets(){
+		return this.bets;
+	}
+	
+	public void setBets(Set<Bet> bets) {
+		this.bets = bets;
+	}
+
+	public boolean doesBetExist(String description) {
+		for(Bet b: bets) {
+			if(b.getDescription().compareTo(description) == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Bet addBet(String description, float minBet) {
+		Bet bet = new Bet(this, description, minBet);
+		bets.add(bet);
+		return bet;
 	}
 	
 

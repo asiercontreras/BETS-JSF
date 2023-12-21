@@ -27,6 +27,11 @@
 		<managed-bean-class>Bean.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+<managed-bean-name>betBean</managed-bean-name>
+<managed-bean-class>Bean.BetBean</managed-bean-class>
+<managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
 	
 	
 	<!-- NAVEGACION -->

@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -20,7 +19,6 @@ import exceptions.QuestionAlreadyExist;
 import businessLogic.BLFacadeHibernateInterface;
 import businessLogic.BLFacadeHibernate;
 //import resources.*;
-
 
 @ManagedBean(name = "createQuestion")
 @RequestScoped
@@ -45,7 +43,10 @@ public class CreateQuestionBean {
 		if (event == null) {
 			FacesContext.getCurrentInstance().addMessage("mensajeFinal",
 					new FacesMessage("No hay ningún evento seleccionado"));
-			
+
+		} else if (minBet < 0) {
+			FacesContext.getCurrentInstance().addMessage("mensajeFinal",
+					new FacesMessage("La apuesta mínima no puede ser negativa."));
 
 		} else if (stringQuestion == "") {
 			FacesContext.getCurrentInstance().addMessage("mensajeFinal",
@@ -57,7 +58,7 @@ public class CreateQuestionBean {
 				question = bl.createQuestion(event, stringQuestion, minBet);
 				FacesContext.getCurrentInstance().addMessage("mensajeFinal",
 						new FacesMessage("Evento con la pregunta: " + question.toString() + " creado"));
-				stringQuestion="";
+				stringQuestion = "";
 			} catch (QuestionAlreadyExist e) {
 				FacesContext.getCurrentInstance().addMessage("mensajeFinal",
 						new FacesMessage("Ya existe un evento con la pregunta " + question.toString() + "."));

@@ -10,6 +10,7 @@ import org.hibernate.*;
 
 import configuration.UtilDate;
 import dominio.*;
+import exceptions.BetAlreadyExist;
 import exceptions.QuestionAlreadyExist;
 import modelo.HibernateUtil;
 
@@ -244,6 +245,46 @@ public class DataAccessHibernate implements DataAccessHibernateInterface {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public Bet createBet(Question question, String descripton, float minBet) throws BetAlreadyExist {
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println(">> DataAccess: createBet => Question: " + question + " Description: " + descripton
+				+ " MinBet: " + minBet);
+		
+		Query query = session.createQuery("FROM Question WHERE questionNumber = :q");
+		query.setParameter("q", question.getQuestionNumber());
+		
+		Question quest = (Question) query.uniqueResult();
+		
+		if(quest.doesBetExist(descripton)) {
+			System.out.println("Bet already exist");
+			throw new BetAlreadyExist("Sorry but the bet already exist");
+		}
+		
+		Bet bet = quest.addBet(descripton, minBet);
+		
+		//session.save(bet);
+		session.persist(quest);
+		
+		session.getTransaction().commit();
+		
+		return bet;
+	}
+	
+	public boolean existBet(Question question, String descripton, float minBet) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println(">> DataAccess: existBet");
+		
+		Query query = session.createQuery("FROM Question WHERE questionNumber = :q");
+		query.setParameter("q", question.getQuestionNumber());
+		
+		Question quest = (Question) query.uniqueResult();
+		
+		return quest.doesBetExist(descripton);
 	}
 
 }

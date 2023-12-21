@@ -3,9 +3,13 @@ package dataAccess;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 
 import dominio.*;
+import exceptions.BetAlreadyExist;
 import exceptions.QuestionAlreadyExist;
+import modelo.HibernateUtil;
 
 public interface DataAccessHibernateInterface {
 	
@@ -55,6 +59,11 @@ public interface DataAccessHibernateInterface {
 	public boolean insertUser(String user, String pass, String salt,String nombre, String apellido, Date date);
 	
 	public User getUser(String user);
+	
+	public Bet createBet(Question question, String descripton, float minBet) throws BetAlreadyExist;
+	
+	public boolean existBet(Question question, String descripton, float minBet);
+		
 	
 
 }

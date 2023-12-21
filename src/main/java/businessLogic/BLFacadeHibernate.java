@@ -10,8 +10,7 @@ import java.util.Vector;
 import dataAccess.DataAccessHibernate;
 import dataAccess.DataAccessHibernateInterface;
 import dominio.*;
-import exceptions.EventFinished;
-import exceptions.QuestionAlreadyExist;
+import exceptions.*;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -117,6 +116,10 @@ public final class BLFacadeHibernate implements BLFacadeHibernateInterface {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		// Este método nunca decodifica la contraseña, lo unico que hace es comparar
 		return encoder.matches(myUser.getSalt() + pass, myUser.getPassword());
+	}
+	public Bet createBet(Question question, String descripton, float minBet) throws BetAlreadyExist{
+		Bet bet = dbManager.createBet(question, descripton, minBet);
+		return bet;
 	}
 
 }

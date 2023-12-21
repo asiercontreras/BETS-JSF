@@ -5,8 +5,7 @@ import java.util.List;
 
 //import domain.Booking;
 import dominio.*;
-import exceptions.EventFinished;
-import exceptions.QuestionAlreadyExist;
+import exceptions.*;
 
 /**
  * Interface that specifies the business logic.
@@ -53,4 +52,6 @@ public interface BLFacadeHibernateInterface  {
 	public boolean insertUser(String user, String pass,String nombre, String apellido, Date date);
 	
 	public boolean checkUserPass(String user, String pass);
+	public Bet createBet(Question question, String descripton, float minBet) throws BetAlreadyExist;
+
 }
